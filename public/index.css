@@ -1,0 +1,103 @@
+.wbdv-course-add-btn {
+    color: red;
+}
+#navbar-item {
+    margin: 10px;
+}
+.navbar {
+    height: 60px;
+}
+
+
+
+.table-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.table-row {
+    flex-wrap: nowrap;
+}
+
+.table-course-heading {
+    flex-wrap: nowrap;
+    margin-bottom: 25px;
+}
+
+.container-line {
+    width: 100%;
+    border-bottom: 1px solid black;
+
+}
+
+.grid-course-heading {
+    flex-wrap: nowrap;
+    margin-bottom: 15px;
+}
+
+.doc-icon {
+    margin-right: 10px;
+}
+
+.table-row {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.hover-row:hover {
+    background: dodgerblue;
+    color: white;
+}
+
+.hover-row .course-link:hover {
+    color: white;
+}
+
+.course-link {
+    color: black;
+}
+
+.wbdv-grid-card {
+    margin: 10px 10px 30px 30px;
+}
+
+
+
+.div-grid-buttons {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.card {
+    background-color: lightgrey;
+}
+
+.cursor-pointer {
+cursor: pointer
+}
+
+
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: crimson;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    z-index: 1;
+}
+
+.my-float{
+    margin-top:22px;
+}
+
+.heading {
+    flex-wrap: nowrap;
+}
+
+.card-input {
+    width: 150px;
+}
