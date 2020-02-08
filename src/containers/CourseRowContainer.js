@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 // import {updateCourse} from "../services/CourseService";
 // import {deleteCourse, createCourse, findAllCourses, updateCourse} from "../services/CourseService"
 
@@ -20,7 +21,7 @@ class CourseRowContainer extends React.Component {
     render() {
 
         return (
-            <div className="hover-row1" style={{backgroundColor:this.state.backgroundColor, color: this.state.color}}
+            <div className="hover-row1" style={{backgroundColor: this.state.backgroundColor, color: this.state.color}}
                  onClick={() => {
                      if (this.state.selected === false) {
                          this.setState({
@@ -46,9 +47,9 @@ class CourseRowContainer extends React.Component {
                     <div className="col-9 col-sm-5 col-md-6 col-lg-5 course-name">
                         <i className="fas fa-file-alt doc-icon cursor-pointer"/>
                         {!this.state.editing &&
-                        <a className="course-link" href="#" onClick={this.props.showCourseEditor}>
-                            {this.state.course.title}
-                        </a>
+                        <Link to={`/course-editor/${this.props.course._id}`}>
+                            {this.props.course.title}
+                        </Link>
                         }
                         {
                             this.state.editing &&

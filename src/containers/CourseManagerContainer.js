@@ -4,6 +4,12 @@ import CourseTableComponent from "../components/CourseTableComponent";
 import CourseGridComponent from "../components/CourseGridComponent";
 import CourseEditorComponent from "../components/CourseEditor/CourseEditorComponent";
 import {deleteCourse, createCourse, findAllCourses, updateCourse} from "../services/CourseService"
+import Page1 from "../components/Page1";
+import Page2 from "../components/Page2";
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import CourseListComponent from "../components/CourseListComponent";
+
+// import Link from "react-router-dom/modules/Link";
 
 class CourseManagerContainer extends React.Component {
     state = {
@@ -38,7 +44,7 @@ class CourseManagerContainer extends React.Component {
     }
 
     updateCourse = async (course) => {
-        const status = await updateCourse(course._id,course)
+        const status = await updateCourse(course._id, course)
         const courses1 = await findAllCourses()
         this.setState({
             courses: courses1
@@ -103,52 +109,50 @@ class CourseManagerContainer extends React.Component {
     render() {
         return (
             <div>
+                {/*<Router>*/}
+                {/*    <Link to="/page1">*/}
+                {/*        Page 1*/}
+                {/*    </Link>*/}
+                {/*    <Link to="/page2">*/}
+                {/*        Page 2*/}
+                {/*    </Link>*/}
+                {/*    <Route path = "/page1" exact={true} component = {Page1}/>*/}
+                {/*    <Route path = "/page2/:message" exact={true} component = {Page2}/>*/}
+                {/*</Router>*/}
                 {/*<h1>Course Manager</h1>*/}
-                {
-                    this.state.editingCourse
-                    && <CourseEditorComponent hideCourseEditor={this.hideCourseEditor}/>
-                }
-                {!this.state.editingCourse &&
-                <div>
+                {/*{   */}
+                {/*    this.state.editingCourse && */}
+                <Router>
+                    <Route path="/course-editor/:courseId"
+                           exact={true}
+                           render={(props) =>
+                               <CourseEditorComponent
+                                   {...props}
+                                   courseId = {props.match.params.courseId}
+                                   hideCourseEditor={this.hideCourseEditor}/>}
+                      />
+                    <Route path="/"
 
-                    <div className="navbar navbar-expand-sm navbar-dark bg-dark">
+                           render={() =>
+                               <CourseListComponent
+                                   layout={this.state.layout}
+                                   updateForm={this.updateForm}
+                                   newCourseTitle={this.state.newCourseTitle}
+                                   addCourse={this.addCourse}
+                                   showCourseEditor={this.showCourseEditor}
+                                   deleteCourse={this.deleteCourse}
+                                   updateCourse={this.updateCourse}
+                                   courses={this.state.courses}
+                                   toggle={this.toggle}
+                               />
+                           }/>
 
-                        <i className="wbdv-toggle-btn fas fa-sliders-h fa-2x cursor-pointer" />
+                    {/*}*/}
+                    {/*{!this.state.editingCourse &&*/}
 
-                        <div className="collapse navbar-collapse" id="navbar-item">
-                            <CourseManagerHeadingComponent/>
-                        </div>
+                    {/*}*/}
 
-                        <div id="navbar-item">
-                            <input
-                                className="form-control"
-                                placeholder="New Course"
-                                onChange={this.updateForm}
-                                value={this.state.newCourseTitle}/>
-                        </div>
-                        <div id="navbar-item">
-                            <i className="wbdv-course-add-btn fas fa-plus-circle fa-2x cursor-pointer" onClick={this.addCourse}/>
-                        </div>
-
-
-                    </div>
-
-                    {this.state.layout === 'table' &&
-                    <CourseTableComponent
-                        showCourseEditor={this.showCourseEditor}
-                        deleteCourse={this.deleteCourse}
-                        updateCourse = {this.updateCourse}
-                        toggle = {this.toggle}
-                        courses={this.state.courses}/>}
-                    {this.state.layout === 'grid' &&
-                    <CourseGridComponent
-                        showCourseEditor={this.showCourseEditor}
-                        deleteCourse={this.deleteCourse}
-                        updateCourse = {this.updateCourse}
-                        toggle = {this.toggle}
-                        courses={this.state.courses}/>}
-                </div>
-                }
+                </Router>
             </div>
         )
     }

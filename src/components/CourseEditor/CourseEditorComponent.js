@@ -2,13 +2,13 @@ import React from "react";
 import ModuleList from "./ModuleList";
 import './CourseEditorComponent.css'
 
-const CourseEditorComponent = ({hideCourseEditor}) =>
+const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
     <div>
-
+        <h1>ABC {courseId}</h1>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 
-            <a href="#" className="nav-link">
-                <i className="fas fa-times wbdv-course-editor wbdv-close" onClick={hideCourseEditor}/>
+            <a className="nav-link cursor-pointer">
+                <i className="fas fa-times wbdv-course-editor wbdv-close" onClick={ () => history.push("/")}/>
             </a>
             <a href="#" class="navbar-brand wbdv-course-title">CS5610-WebDev</a>
 
