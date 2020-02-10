@@ -1,18 +1,27 @@
 import React from "react";
 import ModuleListComponent from "./ModuleListComponent";
+import LessonListComponent from "./LessonListComponent";
 // import ModuleListComponent1 from "./ModuleListComponent";
 import './CourseEditorComponent.css'
-import {createStore} from 'redux';
-import {Provider} from 'react-redux'
-import moduleReducer from "../../reducers/moduleReducers";
+import {createStore, combineReducers} from 'redux';
+import {connect, Provider} from 'react-redux'
+import moduleReducer from "../../reducers/moduleReducer";
+import lessonReducer from "../../reducers/lessonReducer";
+import selectedCourse from "./ModuleListComponent";
+
+const reducer = combineReducers({
+    lesson1 : lessonReducer,
+    module1 : moduleReducer
+})
+const store = createStore(reducer)
 
 
-const store = createStore(moduleReducer)
+const moduleId = 'abcd'
 
 const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
     <Provider store={store}>
         <div>
-            <h1>ABCD {courseId}</h1>
+            <h1>ABCD {courseId} {store.getState().module1.selected}</h1>
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 
                 <a className="nav-link cursor-pointer">
@@ -24,6 +33,8 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
                     <span className="navbar-toggler-icon"/>
                 </button>
                 <div className="collapse navbar-collapse" id="navbar-menu">
+                    {/*<LessonListComponent/>*/}
+
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <a href="#" className="nav-link wbdv-page-tab">Build</a>
@@ -68,6 +79,7 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
 
                         <ModuleListComponent
                             courseId = {courseId}
+                            moduleId = {moduleId}
 
                         />
 
@@ -117,7 +129,32 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
                     </div>
                     <div className="col-sm-8">
 
+                            <LessonListComponent/>
+                        {/*<ul className="nav nav-pills wbdv-topic-pill-list">*/}
+                        {/*    <LessonListComponent/>*/}
 
+                        {/*    */}
+                        {/*    <li className="wbdv-topic-pill bg-secondary">*/}
+                        {/*        <a className="nav-link text-white" href="#">Topic 1</a>*/}
+                        {/*    </li>*/}
+                        {/*    <li className="wbdv-topic-pill bg-secondary">*/}
+                        {/*        <a className="nav-link text-white active" href="#">Topic 2</a>*/}
+                        {/*    </li>*/}
+                        {/*    <li className="wbdv-topic-pill bg-secondary">*/}
+                        {/*        <a className="nav-link text-white" href="#">Topic 3</a>*/}
+                        {/*    </li>*/}
+                        {/*    <li className="wbdv-topic-pill bg-secondary">*/}
+                        {/*        <a className="nav-link text-white" href="#">Topic 4</a>*/}
+                        {/*    </li>*/}
+                        {/*    <li className="wbdv-topic-add-btn bg-secondary">*/}
+                        {/*        <a href="#" className="nav-link text-white">*/}
+                        {/*            <i className="fas fa-plus"/>*/}
+                        {/*        </a>*/}
+                        {/*    </li>*/}
+                        {/*</ul>*/}
+
+
+                        <div>
                         <ul className="nav nav-pills wbdv-topic-pill-list">
                             <li className="wbdv-topic-pill bg-secondary">
                                 <a className="nav-link text-white" href="#">Topic 1</a>
@@ -137,7 +174,7 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
                                 </a>
                             </li>
                         </ul>
-
+                        </div>
 
                         <ul className="nav nav-pills">
                             <li className="wbdv-topic-edit  ml-auto">
@@ -248,4 +285,13 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
         </div>
     </Provider>
 
+// const stateToPropertyMapper = (state) => {
+//     return {
+//         modules: state.module1.modules,
+//         selected: state.module1.selected,
+//         history: [...state.history],
+//         courseId : [ ...state.courseId]
+//     }
+// }
+// export default connect(stateToPropertyMapper)(CourseEditorComponent)
 export default CourseEditorComponent

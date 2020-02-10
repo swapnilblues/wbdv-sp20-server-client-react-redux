@@ -1,4 +1,4 @@
-import {CREATE_MODULE, DELETE_MODULE} from "../actions/moduleAction";
+import {CREATE_MODULE, DELETE_MODULE, FIND_ALL_MODULES} from "../actions/moduleAction";
 
 const initialState = {
     modules: [
@@ -8,17 +8,32 @@ const initialState = {
         // {_id: "345", title: "Module 6 - Node"},
         // {_id:  "345", title: "Module 7 - Mongo"}
 
-    ]
+    ],
+
+    selected : 'abc'
 }
 
 const moduleReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "FIND_ALL_MODULES":
+        case  "SELECTED_MODULE":
+            // alert("AA"+action.moduleId)
+            return {
+                selected: action.moduleId,
+                modules: [
+                    ...state.modules ]
+            }
+        case FIND_ALL_MODULES:
             return  {
+                selected: [
+                    ...state.selected
+                ],
                 modules: action.modules
             }
         case CREATE_MODULE:
             return {
+                selected: [
+                    ...state.selected
+                ],
                 modules: [
                     ...state.modules,
                     action.newModule
@@ -27,6 +42,9 @@ const moduleReducer = (state = initialState, action) => {
             }
         case DELETE_MODULE:
             return {
+                selected: [
+                    ...state.selected
+                ],
                 modules: state.modules.filter(module => module._id !== action.moduleId)
             }
         default:
