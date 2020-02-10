@@ -101,3 +101,7 @@ cursor: pointer
 .card-input {
     width: 150px;
 }
+
+.add-module {
+    height: 200px;
+}

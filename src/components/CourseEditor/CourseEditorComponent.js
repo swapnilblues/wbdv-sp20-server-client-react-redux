@@ -1,5 +1,6 @@
 import React from "react";
 import ModuleListComponent from "./ModuleListComponent";
+// import ModuleListComponent1 from "./ModuleListComponent";
 import './CourseEditorComponent.css'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux'
@@ -57,55 +58,60 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
 
             <div className="container">
                 <div className="row">
-                    <div className="col-4">
-                        <ModuleListComponent
+                    {/*<div className="col-4">*/}
+                    {/*    <ModuleListComponent*/}
+                    {/*        courseId = {courseId}*/}
 
-                        />
-                    </div>
+                    {/*    />*/}
+                    {/*</div>*/}
                     <div className="col-sm-4 bg-secondary">
 
+                        <ModuleListComponent
+                            courseId = {courseId}
 
-                        <ul className="list-group wbdv-module-list">
-                            <li className="list-group-item bg-dark wbdv-module-item">
-                                <span className="wbdv-module-item-title">Module 1 - JQuery</span>
-                                <i className="fas fa-times wbdv-module-item-delete-btn"/>
-                            </li>
+                        />
 
-                            <li className="list-group-item active wbdv-module-item">
-                                <span className="wbdv-module-item-title">Module 2 - React</span>
-                                <i className="fas fa-times wbdv-module-item-delete-btn"/>
-                            </li>
+                        {/*<ul className="list-group wbdv-module-list">*/}
+                        {/*    <li className="list-group-item bg-dark wbdv-module-item">*/}
+                        {/*        <span className="wbdv-module-item-title">Module 1 - JQuery</span>*/}
+                        {/*        <i className="fas fa-times wbdv-module-item-delete-btn"/>*/}
+                        {/*    </li>*/}
 
-                            <li className="list-group-item bg-dark wbdv-module-item">
-                                <span className="wbdv-module-item-title">Module 3 - Redux</span>
-                                <i className="fas fa-times wbdv-module-item-delete-btn"/>
-                            </li>
+                        {/*    <li className="list-group-item active wbdv-module-item">*/}
+                        {/*        <span className="wbdv-module-item-title">Module 2 - React</span>*/}
+                        {/*        <i className="fas fa-times wbdv-module-item-delete-btn"/>*/}
+                        {/*    </li>*/}
 
-                            <li className="list-group-item bg-dark wbdv-module-item">
-                                <span className="wbdv-module-item-title">Module 4 - Native</span>
-                                <i className="fas fa-times wbdv-module-item-delete-btn"/>
-                            </li>
+                        {/*    <li className="list-group-item bg-dark wbdv-module-item">*/}
+                        {/*        <span className="wbdv-module-item-title">Module 3 - Redux</span>*/}
+                        {/*        <i className="fas fa-times wbdv-module-item-delete-btn"/>*/}
+                        {/*    </li>*/}
 
-                            <li className="list-group-item bg-dark wbdv-module-item">
-                                <span className="wbdv-module-item-title">Module 5 - Angular</span>
-                                <i className="fas fa-times wbdv-module-item-delete-btn"/>
-                            </li>
+                        {/*    <li className="list-group-item bg-dark wbdv-module-item">*/}
+                        {/*        <span className="wbdv-module-item-title">Module 4 - Native</span>*/}
+                        {/*        <i className="fas fa-times wbdv-module-item-delete-btn"/>*/}
+                        {/*    </li>*/}
 
-                            <li className="list-group-item bg-dark wbdv-module-item">
-                                <span className="wbdv-module-item-title">Module 6 - Node</span>
-                                <i className="fas fa-times wbdv-module-item-delete-btn"/>
-                            </li>
+                        {/*    <li className="list-group-item bg-dark wbdv-module-item">*/}
+                        {/*        <span className="wbdv-module-item-title">Module 5 - Angular</span>*/}
+                        {/*        <i className="fas fa-times wbdv-module-item-delete-btn"/>*/}
+                        {/*    </li>*/}
 
-                            <li className="list-group-item bg-dark wbdv-module-item">
-                                <span className="wbdv-module-item-title">Module 7 - Mongo</span>
-                                <i className="fas fa-times wbdv-module-item-delete-btn"/>
-                            </li>
+                        {/*    <li className="list-group-item bg-dark wbdv-module-item">*/}
+                        {/*        <span className="wbdv-module-item-title">Module 6 - Node</span>*/}
+                        {/*        <i className="fas fa-times wbdv-module-item-delete-btn"/>*/}
+                        {/*    </li>*/}
 
-                            <li className="list-group-item bg-dark wbdv-module-item">
-                                <i className="fas fa-plus wbdv-module-item-add-btn"/>
-                            </li>
+                        {/*    <li className="list-group-item bg-dark wbdv-module-item">*/}
+                        {/*        <span className="wbdv-module-item-title">Module 7 - Mongo</span>*/}
+                        {/*        <i className="fas fa-times wbdv-module-item-delete-btn"/>*/}
+                        {/*    </li>*/}
 
-                        </ul>
+                        {/*    <li className="list-group-item bg-dark wbdv-module-item">*/}
+                        {/*        <i className="fas fa-plus wbdv-module-item-add-btn"/>*/}
+                        {/*    </li>*/}
+
+                        {/*</ul>*/}
 
 
                     </div>

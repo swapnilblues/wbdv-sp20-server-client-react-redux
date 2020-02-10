@@ -4,10 +4,7 @@ export const deleteModule = (moduleId) => ({
     type: DELETE_MODULE,
     moduleId: moduleId
 })
-export const createModule = () => ({
+export const createModule = (newModule) => ({
     type: CREATE_MODULE,
-    newModule: {
-        title: 'New Module',
-        _id: (new Date()).getTime() + ""
-    }
+    newModule: newModule
 })

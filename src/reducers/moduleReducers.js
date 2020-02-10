@@ -2,9 +2,7 @@ import {CREATE_MODULE, DELETE_MODULE} from "../actions/moduleAction";
 
 const initialState = {
     modules: [
-        {_id: "123", title: "Module 1 - JQuery"},
-        {_id: "234", title: "Module 2 - React"},
-        {_id: "345", title: "Module 3 - Redux"},
+
         // {_id: "345", title: "Module 4 - Native"},
         // {_id: "345", title: "Module 5 - Angular"},
         // {_id: "345", title: "Module 6 - Node"},
@@ -15,6 +13,10 @@ const initialState = {
 
 const moduleReducer = (state = initialState, action) => {
     switch (action.type) {
+        case "FIND_ALL_MODULES":
+            return  {
+                modules: action.modules
+            }
         case CREATE_MODULE:
             return {
                 modules: [
