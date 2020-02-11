@@ -4,7 +4,8 @@ import {connect} from "react-redux";
 import {createModule, deleteModule, FIND_MODULE_FOR_COURSE} from "../../actions/moduleAction";
 import moduleService from "../../services/ModuleService"
 import lessonService from "../../services/LessonService";
-import {FIND_LESSON_FOR_MODULE} from "../../actions/lessonAction";
+import {FIND_LESSON_FOR_MODULE, SET_LESSON_TO_DEFAULT} from "../../actions/lessonAction";
+import {EMPTY_TOPIC} from "../../actions/topicAction";
 
 
 class ModuleListComponent extends React.Component {
@@ -85,15 +86,17 @@ const dispatchToPropertyMapper = (dispatch) => {
 
         setLessonToDefault: () => {
             dispatch({
-                type: "SET_LESSON_TO_DEFAULT"
+                type: SET_LESSON_TO_DEFAULT
             })
         },
+
         emptyTopic: () => {
             dispatch({
-                type: "EMPTY_TOPIC"
+                type: EMPTY_TOPIC
 
             })
         },
+
         findLessonsForModule: (moduleId) => {
             // console.log("Here",moduleId)
             lessonService.findLessonsForModule(moduleId)

@@ -1,4 +1,4 @@
-import {CREATE_LESSON, FIND_LESSON_FOR_MODULE} from "../actions/lessonAction";
+import {CREATE_LESSON, DELETE_LESSON, FIND_LESSON_FOR_MODULE, SET_LESSON_TO_DEFAULT} from "../actions/lessonAction";
 
 const initialState = {
     lessons: [],
@@ -20,7 +20,7 @@ const lessonReducer = (state = initialState, action) => {
 
                 ]
             }
-        case "SET_LESSON_TO_DEFAULT":
+        case SET_LESSON_TO_DEFAULT:
             return  {
                 lessons: [],
                 selectedLesson: 'cde'
@@ -37,6 +37,12 @@ const lessonReducer = (state = initialState, action) => {
                 selectedLesson: action.lessonId,
                 lessons: [
                     ...state.lessons ]
+            }
+
+        case DELETE_LESSON:
+            return  {
+                selectedLesson: 'cde',
+                lessons: state.lessons.filter(lesson => lesson._id !== action.lessonId)
             }
 
         default:

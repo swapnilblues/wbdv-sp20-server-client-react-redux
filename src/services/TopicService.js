@@ -13,4 +13,10 @@ export const findTopicsForLesson = (lessonId) =>
             // console.log(response.json())
             response.json())
 
-export default {createTopic, findTopicsForLesson}
+export const deleteTopic = (topicId) =>
+    fetch(`https://wbdv-generic-server.herokuapp.com/api/bhaumik/topics/${topicId}`,
+        { method: "DELETE"
+        }).then(response => response.json())
+
+
+export default {createTopic, findTopicsForLesson, deleteTopic}

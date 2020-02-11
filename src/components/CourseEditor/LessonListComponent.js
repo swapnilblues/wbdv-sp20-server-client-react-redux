@@ -4,8 +4,9 @@ import {connect} from "react-redux";
 import moduleService from "../../services/ModuleService"
 import lessonService from "../../services/LessonService"
 import topicService from "../../services/TopicService";
-import {CREATE_LESSON} from "../../actions/lessonAction";
-import {FIND_ALL_TOPICS} from "../../actions/topicAction";
+import {CREATE_LESSON, DELETE_LESSON} from "../../actions/lessonAction";
+import {EMPTY_TOPIC, FIND_ALL_TOPICS} from "../../actions/topicAction";
+import {DELETE_MODULE, deleteModule} from "../../actions/moduleAction";
 
 class LessonListComponent extends React.Component {
 
@@ -25,6 +26,12 @@ class LessonListComponent extends React.Component {
                                     await this.props.findTopicsForLesson(lesson._id)
                                 }}>
                                 <a className="nav-link text-white" href="#">{lesson.title}</a>
+                                <i onClick={ async () => {
+                                    await this.props.deleteLesson(lesson._id)
+                                    // await this.props.setLessonToDefault()
+                                    await this.props.emptyTopic()
+                                }}
+                                   className="fas fa-times wbdv-module-item-delete-btn"/>
                             </li>
                         )
                     }
@@ -68,6 +75,19 @@ const
     dispatchToPropertyMapper = (dispatch) => {
         return {
 
+            deleteLesson: (lessonId) =>
+                lessonService.deleteLesson(lessonId)
+                    .then(status => dispatch({
+                        type: DELETE_LESSON,
+                        lessonId: lessonId
+                    })),
+
+            setLessonToDefault: () => {
+                dispatch({
+                    type: "SET_LESSON_TO_DEFAULT"
+                })
+            },
+
             createLesson: (moduleId) => {
                 lessonService.createLesson(moduleId, {
                     title: 'New Lesson'
@@ -95,7 +115,13 @@ const
                         lessonId: lessonId
                     }
                 )
-            }
+            },
+            emptyTopic: () => {
+                dispatch({
+                    type: EMPTY_TOPIC
+
+                })
+            },
 
             // selectModule : (moduleId) =>
             //     dispatch({

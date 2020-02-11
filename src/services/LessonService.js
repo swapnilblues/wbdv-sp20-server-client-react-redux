@@ -13,4 +13,9 @@ export const findLessonsForModule = (moduleId) =>
             // console.log(response.json())
             response.json())
 
-export default {createLesson, findLessonsForModule}
+export const deleteLesson = (lessonId) =>
+    fetch(`https://wbdv-generic-server.herokuapp.com/api/bhaumik/lessons/${lessonId}`,
+        { method: "DELETE"
+        }).then(response => response.json())
+
+export default {createLesson, findLessonsForModule, deleteLesson}

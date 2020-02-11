@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {createModule, deleteModule, FIND_ALL_MODULES} from "../../actions/moduleAction";
 import moduleService from "../../services/ModuleService"
 import topicService from "../../services/TopicService"
-import {CREATE_TOPIC, FIND_ALL_TOPICS} from "../../actions/topicAction";
+import {CREATE_TOPIC, DELETE_TOPIC, FIND_ALL_TOPICS} from "../../actions/topicAction";
 import lessonService from "../../services/LessonService";
 import {CREATE_LESSON} from "../../actions/lessonAction";
 
@@ -22,6 +22,12 @@ class TopicListComponent extends React.Component {
                         this.props.topics && this.props.topics.map(topic =>
                             <li className="wbdv-topic-pill bg-secondary">
                                 <a className="nav-link text-white" href="#">{topic.title}</a>
+                                <i onClick={  () =>
+                                    this.props.deleteTopic(topic._id)
+                                    // await this.props.setLessonToDefault()
+                                    // await this.props.emptyTopic()
+                                }
+                                   className="fas fa-times wbdv-module-item-delete-btn"/>
                             </li>
                         )
                     }
@@ -72,6 +78,12 @@ const dispatchToPropertyMapper = (dispatch) => {
                 }))
         },
 
+        deleteTopic: (topicId) =>
+            topicService.deleteTopic(topicId)
+                .then(status => dispatch({
+                    type: DELETE_TOPIC,
+                    topicId: topicId
+                }))
         // selectModule : (moduleId) =>
         //     dispatch({
         //         type : "SELECTED_MODULE",

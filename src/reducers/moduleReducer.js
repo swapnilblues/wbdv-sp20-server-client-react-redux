@@ -49,8 +49,7 @@ const moduleReducer = (state = initialState, action) => {
             }
         case DELETE_MODULE:
             return {
-                selected: state.selected
-                ,
+                selected: 'abc',
                 modules: state.modules.filter(module => module._id !== action.moduleId)
             }
         default:
