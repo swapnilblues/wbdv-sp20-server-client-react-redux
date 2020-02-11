@@ -1,4 +1,4 @@
-import {CREATE_MODULE, DELETE_MODULE, FIND_ALL_MODULES} from "../actions/moduleAction";
+import {CREATE_MODULE, DELETE_MODULE, FIND_MODULE_FOR_COURSE} from "../actions/moduleAction";
 
 const initialState = {
     modules: [
@@ -15,6 +15,13 @@ const initialState = {
 
 const moduleReducer = (state = initialState, action) => {
     switch (action.type) {
+
+        case "SET_MODULE_TO_DEFAULT":
+            return  {
+                modules: [...state.modules ],
+                selected: 'abc'
+            }
+
         case  "SELECTED_MODULE":
             // alert("AA"+action.moduleId)
             return {
@@ -22,7 +29,7 @@ const moduleReducer = (state = initialState, action) => {
                 modules: [
                     ...state.modules ]
             }
-        case FIND_ALL_MODULES:
+        case FIND_MODULE_FOR_COURSE:
             return  {
                 selected:
                     state.selected

@@ -1,10 +1,10 @@
 import React from "react";
 import ModuleListItem from "./ModuleListItem";
 import {connect} from "react-redux";
-import {createModule, deleteModule, FIND_ALL_MODULES} from "../../actions/moduleAction";
+import {createModule, deleteModule, FIND_MODULE_FOR_COURSE} from "../../actions/moduleAction";
 import moduleService from "../../services/ModuleService"
 import lessonService from "../../services/LessonService";
-import {FIND_ALL_LESSONS} from "../../actions/lessonAction";
+import {FIND_LESSON_FOR_MODULE} from "../../actions/lessonAction";
 
 
 class ModuleListComponent extends React.Component {
@@ -46,7 +46,11 @@ class ModuleListComponent extends React.Component {
                             <i className="fas fa-pencil-alt cursor-pointer"
                                onClick={() => this.setState({editing: true, selected1: false})}/>
                             <i className="fas fa-check cursor-pointer"/>
-                            <i onClick={() => this.props.deleteModule(module._id)}
+                            <i onClick={ async () => {
+                                await this.props.deleteModule(module._id)
+                                await this.props.setModuleToDefault()
+                                await this.props.setLessonToDefault()
+                            }}
                                className="fas fa-times wbdv-module-item-delete-btn"/>
 
                         </li>
@@ -73,6 +77,12 @@ const stateToPropertyMapper = (state) => {
 const dispatchToPropertyMapper = (dispatch) => {
     return {
 
+        setModuleToDefault: () => {
+            dispatch({
+                type: "SET_MODULE_TO_DEFAULT"
+            })
+        },
+
         setLessonToDefault: () => {
             dispatch({
                 type: "SET_LESSON_TO_DEFAULT"
@@ -89,7 +99,7 @@ const dispatchToPropertyMapper = (dispatch) => {
             lessonService.findLessonsForModule(moduleId)
                 .then(actualLessons =>
                     dispatch({
-                        type: FIND_ALL_LESSONS,
+                        type: FIND_LESSON_FOR_MODULE,
                         lessons: actualLessons
 
                     })
@@ -105,7 +115,7 @@ const dispatchToPropertyMapper = (dispatch) => {
             moduleService.findModulesForCourse(courseId)
                 .then(actualModules =>
                     dispatch({
-                        type: FIND_ALL_MODULES,
+                        type: FIND_MODULE_FOR_COURSE,
                         modules: actualModules
 
                     })),

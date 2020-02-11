@@ -1,11 +1,10 @@
 import React from "react";
 // import TopicListItem from "./TopicListItem";
 import {connect} from "react-redux";
-import {createModule, deleteModule, FIND_ALL_MODULES} from "../../actions/moduleAction";
 import moduleService from "../../services/ModuleService"
 import lessonService from "../../services/LessonService"
 import topicService from "../../services/TopicService";
-import {FIND_ALL_LESSONS} from "../../actions/lessonAction";
+import {CREATE_LESSON} from "../../actions/lessonAction";
 import {FIND_ALL_TOPICS} from "../../actions/topicAction";
 
 class LessonListComponent extends React.Component {
@@ -29,11 +28,14 @@ class LessonListComponent extends React.Component {
                             </li>
                         )
                     }
-                    <li className="wbdv-topic-add-btn bg-secondary">
+                    {this.props.selected !== 'abc' &&
+                    <li className="wbdv-topic-add-btn bg-secondary"
+                        onClick={() => this.props.createLesson(this.props.selected)}>
                         <a href="#" className="nav-link text-white">
                             <i className="fas fa-plus"/>
                         </a>
                     </li>
+                    }
                 </ul>
 
             </div>
@@ -43,13 +45,14 @@ class LessonListComponent extends React.Component {
 
     // }
 }
+
 // const stateToPropertyMapper = (state) => {
 //     return {
 //         lessons: state.lesson1.lessons
 //     }
 // }
 
-    const
+const
     stateToPropertyMapper = (state) => {
         return {
             lessons: state.lesson1.lessons,
@@ -61,9 +64,20 @@ class LessonListComponent extends React.Component {
         }
     }
 
-    const
+const
     dispatchToPropertyMapper = (dispatch) => {
         return {
+
+            createLesson: (moduleId) => {
+                lessonService.createLesson(moduleId, {
+                    title: 'New Lesson'
+
+                }).then(actualLesson =>
+                    dispatch({
+                        type: CREATE_LESSON,
+                        newLesson: actualLesson
+                    }))
+            },
 
             findTopicsForLesson: (lessonId) => {
                 // console.log("Here",moduleId)
@@ -108,4 +122,4 @@ class LessonListComponent extends React.Component {
 
 // export default connect(stateToPropertyMapper)(CourseEditorComponent)
 
-export default connect(stateToPropertyMapper,dispatchToPropertyMapper)(LessonListComponent)
+export default connect(stateToPropertyMapper, dispatchToPropertyMapper)(LessonListComponent)

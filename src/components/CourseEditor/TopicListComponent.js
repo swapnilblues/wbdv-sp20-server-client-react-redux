@@ -4,7 +4,9 @@ import {connect} from "react-redux";
 import {createModule, deleteModule, FIND_ALL_MODULES} from "../../actions/moduleAction";
 import moduleService from "../../services/ModuleService"
 import topicService from "../../services/TopicService"
-import {FIND_ALL_TOPICS} from "../../actions/topicAction";
+import {CREATE_TOPIC, FIND_ALL_TOPICS} from "../../actions/topicAction";
+import lessonService from "../../services/LessonService";
+import {CREATE_LESSON} from "../../actions/lessonAction";
 
 
 class TopicListComponent extends React.Component {
@@ -23,11 +25,14 @@ class TopicListComponent extends React.Component {
                             </li>
                         )
                     }
-                    <li className="wbdv-topic-add-btn bg-secondary">
+                    {this.props.selectedLesson !== 'cde' &&
+                    <li className="wbdv-topic-add-btn bg-secondary"
+                        onClick={() => this.props.createTopic(this.props.selectedLesson)}>
                         <a href="#" className="nav-link text-white">
                             <i className="fas fa-plus"/>
                         </a>
                     </li>
+                    }
                 </ul>
 
             </div>
@@ -55,6 +60,17 @@ const stateToPropertyMapper = (state) => {
 
 const dispatchToPropertyMapper = (dispatch) => {
     return {
+
+        createTopic: (moduleId) => {
+            topicService.createTopic(moduleId, {
+                title: 'New Topic'
+
+            }).then(actualTopic =>
+                dispatch({
+                    type: CREATE_TOPIC,
+                    newTopic: actualTopic
+                }))
+        },
 
         // selectModule : (moduleId) =>
         //     dispatch({

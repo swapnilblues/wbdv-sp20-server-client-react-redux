@@ -1,5 +1,4 @@
-import {CREATE_MODULE, DELETE_MODULE, FIND_ALL_MODULES} from "../actions/moduleAction";
-import {FIND_ALL_LESSONS} from "../actions/lessonAction";
+import {CREATE_LESSON, FIND_LESSON_FOR_MODULE} from "../actions/lessonAction";
 
 const initialState = {
     lessons: [],
@@ -11,12 +10,22 @@ const initialState = {
 const lessonReducer = (state = initialState, action) => {
     switch (action.type) {
 
+        case CREATE_LESSON:
+            return {
+                selectedLesson: state.selectedLesson
+                ,
+                lessons: [
+                    ...state.lessons,
+                    action.newLesson
+
+                ]
+            }
         case "SET_LESSON_TO_DEFAULT":
             return  {
                 lessons: [],
                 selectedLesson: 'cde'
             }
-        case FIND_ALL_LESSONS:
+        case FIND_LESSON_FOR_MODULE:
             return  {
                 selectedLesson:
                     state.selectedLesson

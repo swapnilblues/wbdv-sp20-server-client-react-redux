@@ -1,1 +1,2 @@
 export const FIND_ALL_TOPICS = "FIND_ALL_TOPICS"
+export const CREATE_TOPIC = "CREATE_TOPIC"
