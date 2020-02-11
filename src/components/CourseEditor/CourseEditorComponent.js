@@ -8,10 +8,13 @@ import {connect, Provider} from 'react-redux'
 import moduleReducer from "../../reducers/moduleReducer";
 import lessonReducer from "../../reducers/lessonReducer";
 import selectedCourse from "./ModuleListComponent";
+import TopicListComponent from "./TopicListComponent";
+import topicReducer from "../../reducers/topicReducer";
 
 const reducer = combineReducers({
     lesson1 : lessonReducer,
-    module1 : moduleReducer
+    module1 : moduleReducer,
+    topic1 : topicReducer
 })
 const store = createStore(reducer)
 
@@ -21,7 +24,7 @@ const moduleId = 'abcd'
 const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
     <Provider store={store}>
         <div>
-            <h1>ABCD {courseId} {store.getState().module1.selected}</h1>
+            <h1>ABCD {courseId} </h1>
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 
                 <a className="nav-link cursor-pointer">
@@ -155,25 +158,27 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
 
 
                         <div>
-                        <ul className="nav nav-pills wbdv-topic-pill-list">
-                            <li className="wbdv-topic-pill bg-secondary">
-                                <a className="nav-link text-white" href="#">Topic 1</a>
-                            </li>
-                            <li className="wbdv-topic-pill bg-secondary">
-                                <a className="nav-link text-white active" href="#">Topic 2</a>
-                            </li>
-                            <li className="wbdv-topic-pill bg-secondary">
-                                <a className="nav-link text-white" href="#">Topic 3</a>
-                            </li>
-                            <li className="wbdv-topic-pill bg-secondary">
-                                <a className="nav-link text-white" href="#">Topic 4</a>
-                            </li>
-                            <li className="wbdv-topic-add-btn bg-secondary">
-                                <a href="#" className="nav-link text-white">
-                                    <i className="fas fa-plus"/>
-                                </a>
-                            </li>
-                        </ul>
+                        <TopicListComponent/>
+                        {/*<ul className="nav nav-pills wbdv-topic-pill-list">*/}
+
+                        {/*    <li className="wbdv-topic-pill bg-secondary">*/}
+                        {/*        <a className="nav-link text-white" href="#">Topic 1</a>*/}
+                        {/*    </li>*/}
+                        {/*    <li className="wbdv-topic-pill bg-secondary">*/}
+                        {/*        <a className="nav-link text-white active" href="#">Topic 2</a>*/}
+                        {/*    </li>*/}
+                        {/*    <li className="wbdv-topic-pill bg-secondary">*/}
+                        {/*        <a className="nav-link text-white" href="#">Topic 3</a>*/}
+                        {/*    </li>*/}
+                        {/*    <li className="wbdv-topic-pill bg-secondary">*/}
+                        {/*        <a className="nav-link text-white" href="#">Topic 4</a>*/}
+                        {/*    </li>*/}
+                        {/*    <li className="wbdv-topic-add-btn bg-secondary">*/}
+                        {/*        <a href="#" className="nav-link text-white">*/}
+                        {/*            <i className="fas fa-plus"/>*/}
+                        {/*        </a>*/}
+                        {/*    </li>*/}
+                        {/*</ul>*/}
                         </div>
 
                         <ul className="nav nav-pills">

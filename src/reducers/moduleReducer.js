@@ -24,16 +24,16 @@ const moduleReducer = (state = initialState, action) => {
             }
         case FIND_ALL_MODULES:
             return  {
-                selected: [
-                    ...state.selected
-                ],
+                selected:
+                    state.selected
+                ,
                 modules: action.modules
             }
         case CREATE_MODULE:
             return {
-                selected: [
-                    ...state.selected
-                ],
+                selected:
+                    state.selected
+                ,
                 modules: [
                     ...state.modules,
                     action.newModule
@@ -42,9 +42,8 @@ const moduleReducer = (state = initialState, action) => {
             }
         case DELETE_MODULE:
             return {
-                selected: [
-                    ...state.selected
-                ],
+                selected: state.selected
+                ,
                 modules: state.modules.filter(module => module._id !== action.moduleId)
             }
         default:

@@ -1,0 +1,1 @@
+export const FIND_ALL_TOPICS = "FIND_ALL_TOPICS"

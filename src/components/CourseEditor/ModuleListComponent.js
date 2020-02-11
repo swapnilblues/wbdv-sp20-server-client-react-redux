@@ -36,6 +36,8 @@ class ModuleListComponent extends React.Component {
                             onClick={ async () => {
                                 await this.props.selectModule(module._id)
                                 await this.props.findLessonsForModule(module._id)
+                                await this.props.setLessonToDefault()
+                                await this.props.emptyTopic()
                              }}>
 
                             <span className="wbdv-module-item-title">
@@ -71,6 +73,17 @@ const stateToPropertyMapper = (state) => {
 const dispatchToPropertyMapper = (dispatch) => {
     return {
 
+        setLessonToDefault: () => {
+            dispatch({
+                type: "SET_LESSON_TO_DEFAULT"
+            })
+        },
+        emptyTopic: () => {
+            dispatch({
+                type: "EMPTY_TOPIC"
+
+            })
+        },
         findLessonsForModule: (moduleId) => {
             // console.log("Here",moduleId)
             lessonService.findLessonsForModule(moduleId)
@@ -79,7 +92,8 @@ const dispatchToPropertyMapper = (dispatch) => {
                         type: FIND_ALL_LESSONS,
                         lessons: actualLessons
 
-                    }))},
+                    })
+                )},
         selectModule: (moduleId) => {
             dispatch({
                     type: "SELECTED_MODULE",
