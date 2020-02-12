@@ -35,7 +35,7 @@ class ModuleListComponent extends React.Component {
     render() {
 
         return (<ul className="list-group wbdv-module-list">
-                <h2>{this.props.selected}</h2>
+                {/*<h2>{this.props.selected}</h2>*/}
                 {
                     this.props.modules && this.props.modules.map(module => {
 
@@ -104,6 +104,8 @@ class ModuleListComponent extends React.Component {
                                             await this.props.deleteModule(module._id)
                                             await this.props.setModuleToDefault()
                                             await this.props.setLessonToDefault()
+                                            await this.props.setLessonToDefault()
+                                            await this.props.emptyTopic()
                                             await this.props.editStateTrue()
                                         }}
                                            className="fas fa-times wbdv-module-item-delete-btn"/>

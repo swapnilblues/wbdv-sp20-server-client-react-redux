@@ -18,13 +18,13 @@ export const deleteTopic = (topicId) =>
         { method: "DELETE"
         }).then(response => response.json())
 
-export const updateTopic  = async (lesson, moduleId) => {
-    const response = await fetch(`https://wbdv-generic-server.herokuapp.com/api/bhaumik/lessons/${moduleId}`, {
+export const updateTopic  = async (newLesson, lessonId) => {
+    const response = await fetch(`https://wbdv-generic-server.herokuapp.com/api/bhaumik/lessons/${lessonId}`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify(lesson)
+        body: JSON.stringify(newLesson)
     })
     return await response.json()
 }

@@ -19,7 +19,8 @@ class LessonListComponent extends React.Component {
         return (
             <div>
                 <ul className="nav nav-pills wbdv-topic-pill-list">
-                    <h1>{this.props.selected}</h1>
+                    <h3>Lessons:</h3>
+                    {/*<h1>{this.props.selected}</h1>*/}
                     {
                         this.props.lessons && this.props.lessons.map(lesson => {
 
@@ -87,6 +88,7 @@ class LessonListComponent extends React.Component {
                                                 // await this.props.setLessonToDefault()
                                                 await this.props.emptyTopic()
                                                 await this.props.editStateTrue1()
+                                                await this.props.emptyTopic()
                                             }}>
                                 <i className="fas fa-times wbdv-module-item-delete-btn"/>
                                    </span>
@@ -182,8 +184,8 @@ const
     dispatchToPropertyMapper = (dispatch) => {
         return {
 
-            setCurrTitle1: async (module, courseId) => {
-                await lessonService.updateLesson(module, courseId)
+            setCurrTitle1: async (newLesson, lessonId) => {
+                await lessonService.updateLesson(newLesson, lessonId)
                     .then(res =>
                         dispatch({type: UPDATE_LESSON})
                     )

@@ -1,9 +1,10 @@
-import {CREATE_TOPIC, DELETE_TOPIC, EMPTY_TOPIC, FIND_ALL_TOPICS} from "../actions/topicAction";
-import {CREATE_LESSON} from "../actions/lessonAction";
+import {CREATE_TOPIC, DELETE_TOPIC, EMPTY_TOPIC, FIND_ALL_TOPICS, UPDATE_TOPIC} from "../actions/topicAction";
+import {CREATE_LESSON, UPDATE_LESSON} from "../actions/lessonAction";
 
 const initialState = {
     topics: [],
-    selectedTopic: 'bcd'
+    selectedTopic: 'bcd',
+    edit: false
 }
 
 const topicReducer = (state = initialState, action) => {
@@ -15,6 +16,33 @@ const topicReducer = (state = initialState, action) => {
         //         topics: state.topics
         //     }
 
+
+        case "EDIT_TOPIC":
+            // alert("EE")
+            return {
+                edit: true,
+                selectedTopic: state.selectedTopic,
+                topics: [
+                    ...state.topics]
+            }
+
+        case "SELECTED_TOPIC":
+            return {
+                edit: state.edit,
+                selectedTopic: action.topicId,
+                topics: [
+                    ...state.topics]
+
+            }
+
+        case "EDIT_TRUE_TOPIC":
+            return {
+                edit: false,
+                selectedTopic: state.selectedTopic,
+                topics: [
+                    ...state.topics]
+            }
+
         case CREATE_TOPIC:
             return {
                 selectedTopic: state.selectedTopic
@@ -22,26 +50,38 @@ const topicReducer = (state = initialState, action) => {
                 topics: [
                     ...state.topics,
                     action.newTopic
-
-                ]
+                ],
+                edit: state.edit
             }
         case EMPTY_TOPIC:
-            console.log("ET")
+            // console.log("ET")
             return {
                 selectedTopic: 'bcd',
-                topics: []
+                topics: [],
+                edit: false
             }
 
         case FIND_ALL_TOPICS:
             return {
                 selectedTopic: state.selectedTopic,
-                topics: action.topics
+                topics: action.topics,
+                edit: state.edit
             }
 
         case DELETE_TOPIC:
             return {
                 selectedTopic: 'bcd',
-                topics: state.topics.filter(topic => topic._id !== action.topicId)
+                topics: state.topics.filter(topic => topic._id !== action.topicId),
+                edit: state.edit
+            }
+
+        case UPDATE_TOPIC:
+            return {
+                edit: false,
+                selectedTopic: state.selectedTopic,
+                topics: [
+                    ...state.topics
+                ]
             }
 
         default:

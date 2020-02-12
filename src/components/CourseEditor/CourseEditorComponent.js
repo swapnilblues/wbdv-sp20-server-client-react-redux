@@ -25,7 +25,7 @@ const moduleId = 'abcd'
 const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
     <Provider store={store}>
         <div>
-            <h1>ABCD {courseId} </h1>
+            {/*<h1>ABCD {courseId} </h1>*/}
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 
                 <a className="nav-link cursor-pointer">
