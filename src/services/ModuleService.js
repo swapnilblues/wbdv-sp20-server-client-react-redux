@@ -20,9 +20,21 @@ export const deleteModule = (moduleId) =>
     { method: "DELETE"
     }).then(response => response.json())
 
+export const updateModule  = async (module, courseId) => {
+    const response = await fetch(`https://wbdv-generic-server.herokuapp.com/api/bhaumik/modules/${courseId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(module)
+    })
+    return await response.json()
+}
+
 export default {
     findAllModules,
     deleteModule,
     findModulesForCourse,
-    createModule
+    createModule,
+    updateModule
 }

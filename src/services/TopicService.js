@@ -18,5 +18,16 @@ export const deleteTopic = (topicId) =>
         { method: "DELETE"
         }).then(response => response.json())
 
+export const updateTopic  = async (lesson, moduleId) => {
+    const response = await fetch(`https://wbdv-generic-server.herokuapp.com/api/bhaumik/lessons/${moduleId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(lesson)
+    })
+    return await response.json()
+}
 
-export default {createTopic, findTopicsForLesson, deleteTopic}
+
+export default {createTopic, findTopicsForLesson, deleteTopic, updateTopic}

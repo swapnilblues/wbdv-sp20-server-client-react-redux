@@ -9,6 +9,16 @@
 .wbdv-module-item-title {
     color : white;
 }
+
+.wbdv-module-item-edit-btn {
+    float: right;
+    color: white
+}
+.wbdv-module-item-check-btn {
+    float: right;
+    color: white
+}
+
 .wbdv-module-item-delete-btn {
     float: right;
     color: white;
@@ -82,4 +92,9 @@
 
 .outer-form {
     margin-left: 20px;
+}
+
+.wbdv-make-me-active {
+    color: #1c7430;
+    background-color: blue;
 }

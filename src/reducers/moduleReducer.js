@@ -1,4 +1,4 @@
-import {CREATE_MODULE, DELETE_MODULE, FIND_MODULE_FOR_COURSE} from "../actions/moduleAction";
+import {CREATE_MODULE, DELETE_MODULE, FIND_MODULE_FOR_COURSE, UPDATE_MODULE} from "../actions/moduleAction";
 
 const initialState = {
     modules: [
@@ -10,36 +10,56 @@ const initialState = {
 
     ],
 
-    selected : 'abc'
+    selected: 'abc',
+    edit: false
 }
 
 const moduleReducer = (state = initialState, action) => {
     switch (action.type) {
 
+        case "EDIT":
+            // alert("EE")
+            return {
+                edit: true,
+                selected: state.selected,
+                modules: [
+                    ...state.modules]
+            }
+        case "EDIT_TRUE":
+            return {
+                edit: false,
+                selected: state.selected,
+                modules: [
+                    ...state.modules]
+            }
+
         case "SET_MODULE_TO_DEFAULT":
-            return  {
-                modules: [...state.modules ],
+            return {
+                edit: state.edit,
+                modules: [...state.modules],
                 selected: 'abc'
             }
 
         case  "SELECTED_MODULE":
             // alert("AA"+action.moduleId)
             return {
+                edit: state.edit,
                 selected: action.moduleId,
                 modules: [
-                    ...state.modules ]
+                    ...state.modules]
             }
         case FIND_MODULE_FOR_COURSE:
-            return  {
-                selected:
-                    state.selected
+            return {
+                edit: state.edit,
+                selected:state.selected
                 ,
                 modules: action.modules
             }
         case CREATE_MODULE:
             return {
+                edit: state.edit,
                 selected:
-                    state.selected
+                state.selected
                 ,
                 modules: [
                     ...state.modules,
@@ -49,11 +69,21 @@ const moduleReducer = (state = initialState, action) => {
             }
         case DELETE_MODULE:
             return {
+                edit: state.edit,
                 selected: 'abc',
                 modules: state.modules.filter(module => module._id !== action.moduleId)
             }
+
+        case UPDATE_MODULE:
+            return {
+                edit: false,
+                selected: state.selected,
+                modules: [
+                    ...state.modules]
+
+            }
         default:
-                return state
+            return state
     }
 
 }

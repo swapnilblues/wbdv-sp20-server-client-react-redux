@@ -10,6 +10,7 @@ import lessonReducer from "../../reducers/lessonReducer";
 import selectedCourse from "./ModuleListComponent";
 import TopicListComponent from "./TopicListComponent";
 import topicReducer from "../../reducers/topicReducer";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 const reducer = combineReducers({
     lesson1 : lessonReducer,
@@ -79,6 +80,30 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
                     {/*    />*/}
                     {/*</div>*/}
                     <div className="col-sm-4 bg-secondary">
+
+                        {/*<Router>*/}
+                        {/*    <Route path="/course-editor/:courseId"*/}
+                        {/*           exact={true}*/}
+                        {/*           render={(props) =>*/}
+                        {/*               <CourseEditorComponent*/}
+                        {/*                   courseId = {props.match.params.courseId}*/}
+                        {/*                   hideCourseEditor={this.hideCourseEditor}*/}
+                        {/*                   {...props}/>*/}
+                        {/*           }*/}
+                        {/*    />*/}
+
+
+                            {/*<Route path="/course-editor/:courseId/:moduleId"*/}
+                            {/*       exact={true}*/}
+                            {/*       render={(props) =>*/}
+                            {/*           <ModuleListComponent*/}
+                            {/*               courseId = {props.match.params.courseId}*/}
+                            {/*               moduleId = {props.match.params.moduleId}*/}
+                            {/*               // hideCourseEditor={this.hideCourseEditor}*/}
+                            {/*               {...props}/>*/}
+                            {/*       }*/}
+                            {/*/>*/}
+
 
                         <ModuleListComponent
                             courseId = {courseId}

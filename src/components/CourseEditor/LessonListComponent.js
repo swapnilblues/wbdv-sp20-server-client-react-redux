@@ -4,11 +4,15 @@ import {connect} from "react-redux";
 import moduleService from "../../services/ModuleService"
 import lessonService from "../../services/LessonService"
 import topicService from "../../services/TopicService";
-import {CREATE_LESSON, DELETE_LESSON} from "../../actions/lessonAction";
+import {CREATE_LESSON, DELETE_LESSON, FIND_LESSON_FOR_MODULE, UPDATE_LESSON} from "../../actions/lessonAction";
 import {EMPTY_TOPIC, FIND_ALL_TOPICS} from "../../actions/topicAction";
 import {DELETE_MODULE, deleteModule} from "../../actions/moduleAction";
 
 class LessonListComponent extends React.Component {
+
+    state = {
+        course: ""
+    }
 
     // LessonListComponent = ({lessons, selected, selectedLesson}) => {
     render() {
@@ -17,24 +21,126 @@ class LessonListComponent extends React.Component {
                 <ul className="nav nav-pills wbdv-topic-pill-list">
                     <h1>{this.props.selected}</h1>
                     {
-                        this.props.lessons && this.props.lessons.map(lesson =>
-                            <li className="wbdv-topic-pill bg-secondary"
-                                onClick={async () => {
-                                    // this.props.findTopicsForLesson(lesson._id)
-                                    // await
-                                    await this.props.selectLesson(lesson._id)
-                                    await this.props.findTopicsForLesson(lesson._id)
-                                }}>
-                                <a className="nav-link text-white" href="#">{lesson.title}</a>
-                                <i onClick={ async () => {
-                                    await this.props.deleteLesson(lesson._id)
-                                    // await this.props.setLessonToDefault()
-                                    await this.props.emptyTopic()
-                                }}
-                                   className="fas fa-times wbdv-module-item-delete-btn"/>
-                            </li>
+                        this.props.lessons && this.props.lessons.map(lesson => {
+
+                                if (!this.props.edit && this.props.selectedLesson === lesson._id) {
+                                    // alert("A")
+                                    return (
+                                        <li className="list-group-item wbdv-topic-pill active"
+                                            onClick={async () => {
+                                                // this.props.findTopicsForLesson(lesson._id)
+                                                // await
+                                                await this.props.selectLesson(lesson._id)
+                                                await this.props.findTopicsForLesson(lesson._id)
+                                            }}>
+                                            <a className="nav-link text-white" href="#">{lesson.title}</a>
+
+                                <span onClick={()=> this.props.editState1()}>
+                                <i className="fas fa-pencil-alt cursor-pointer wbdv-module-item-edit-btn"/>
+                                </span>
+
+                                        </li>
+                                    )
+
+                                } else if(this.props.edit && this.props.selectedLesson === lesson._id) {
+                                    // alert("B")
+                                    return (
+                                        <li className="list-group-item wbdv-topic-pill active"
+                                            onClick={async () => {
+                                                // this.props.findTopicsForLesson(lesson._id)
+                                                // await
+                                                await this.props.selectLesson(lesson._id)
+                                                await this.props.findTopicsForLesson(lesson._id)
+                                            }}>
+
+                                            <input onChange={async (e) =>
+
+                                                await this.setState({
+                                                    course: {
+                                                        ...this.state.course,
+                                                        title: e.target.value
+
+                                                    }
+
+                                                })}
+                                                   value={this.state.course.title}
+
+                                            />
+                                            <span
+                                                onClick={async () => {
+                                                    await this.props.setCurrTitle1(this.state.course, this.props.selectedLesson)
+                                                    // await this.props.editStateTrue1()
+                                                    await this.props.findLessonsForModule(this.props.selected)
+                                                    // await this.props.setLessonToDefault()
+                                                    // await this.props.setTopicToDefault()
+                                                    await this.setState({
+                                                        course: ""
+
+                                                    })
+                                                }
+                                                }
+                                            >
+                                <i className="fas fa-check cursor-pointer wbdv-module-item-check-btn"/>
+                                </span>
+                                            <span onClick={async () => {
+                                                await this.props.deleteLesson(lesson._id)
+                                                // await this.props.setLessonToDefault()
+                                                await this.props.emptyTopic()
+                                                await this.props.editStateTrue1()
+                                            }}>
+                                <i className="fas fa-times wbdv-module-item-delete-btn"/>
+                                   </span>
+                                        </li>
+                                    )
+                                }else {
+                                    // alert("C")
+                                    return (
+                                        <li className="list-group-item wbdv-topic-pill bg-secondary"
+                                            onClick={async () => {
+                                                // this.props.findTopicsForLesson(lesson._id)
+                                                // await
+                                                await this.props.selectLesson(lesson._id)
+                                                await this.props.findTopicsForLesson(lesson._id)
+                                            }}>
+                                            <a className="nav-link text-white" href="#">{lesson.title}</a>
+
+                                            <span>
+                                <i className="fas fa-pencil-alt cursor-pointer wbdv-module-item-edit-btn"/>
+                                </span>
+
+                                        </li>
+                                    )
+                                }
+
+
+
+                                // return (
+                                //     <li className="wbdv-topic-pill bg-secondary"
+                                //         onClick={async () => {
+                                //             // this.props.findTopicsForLesson(lesson._id)
+                                //             // await
+                                //             await this.props.selectLesson(lesson._id)
+                                //             await this.props.findTopicsForLesson(lesson._id)
+                                //         }}>
+                                //         <a className="nav-link text-white" href="#">{lesson.title}</a>
+                                // <span>
+                                // <i className="fas fa-check cursor-pointer wbdv-module-item-check-btn"/>
+                                // </span>
+                                // <span>
+                                // <i className="fas fa-pencil-alt cursor-pointer wbdv-module-item-edit-btn"/>
+                                // </span>
+                                //         <span onClick={async () => {
+                                //             await this.props.deleteLesson(lesson._id)
+                                //             // await this.props.setLessonToDefault()
+                                //             await this.props.emptyTopic()
+                                //         }}>
+                                // <i className="fas fa-times wbdv-module-item-delete-btn"/>
+                                //    </span>
+                                //     </li>)
+                            }
                         )
                     }
+
                     {this.props.selected !== 'abc' &&
                     <li className="wbdv-topic-add-btn bg-secondary"
                         onClick={() => this.props.createLesson(this.props.selected)}>
@@ -66,6 +172,7 @@ const
             // modules: state.module1.modules,
             selected: state.module1.selected,
             selectedLesson: state.lesson1.selectedLesson,
+            edit: state.lesson1.edit
             // history: [...state.history],
             // courseId : [ ...state.courseId]
         }
@@ -74,6 +181,25 @@ const
 const
     dispatchToPropertyMapper = (dispatch) => {
         return {
+
+            setCurrTitle1: async (module, courseId) => {
+                await lessonService.updateLesson(module, courseId)
+                    .then(res =>
+                        dispatch({type: UPDATE_LESSON})
+                    )
+            },
+
+            editState1: () => {
+                // alert("ES")
+                dispatch({
+                    type: "EDIT_LESSON"
+                })
+            },
+            editStateTrue1: () => {
+                dispatch({
+                    type: "EDIT_TRUE_LESSON"
+                })
+            },
 
             deleteLesson: (lessonId) =>
                 lessonService.deleteLesson(lessonId)
@@ -97,6 +223,19 @@ const
                         type: CREATE_LESSON,
                         newLesson: actualLesson
                     }))
+            },
+
+            findLessonsForModule: (moduleId) => {
+                // console.log("Here",moduleId)
+                // alert(moduleId)
+                lessonService.findLessonsForModule(moduleId)
+                    .then(actualLessons =>
+                        dispatch({
+                            type: FIND_LESSON_FOR_MODULE,
+                            lessons: actualLessons
+
+                        })
+                    )
             },
 
             findTopicsForLesson: (lessonId) => {

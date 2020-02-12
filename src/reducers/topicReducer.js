@@ -9,6 +9,12 @@ const initialState = {
 const topicReducer = (state = initialState, action) => {
     switch (action.type) {
 
+        // case "EDIT":
+        //     return {
+        //         selectedTopic: state.selectedTopic,
+        //         topics: state.topics
+        //     }
+
         case CREATE_TOPIC:
             return {
                 selectedTopic: state.selectedTopic
