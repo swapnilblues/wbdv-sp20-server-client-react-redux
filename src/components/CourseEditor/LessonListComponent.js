@@ -5,7 +5,7 @@ import moduleService from "../../services/ModuleService"
 import lessonService from "../../services/LessonService"
 import topicService from "../../services/TopicService";
 import {CREATE_LESSON, DELETE_LESSON, FIND_LESSON_FOR_MODULE, UPDATE_LESSON} from "../../actions/lessonAction";
-import {EMPTY_TOPIC, FIND_ALL_TOPICS} from "../../actions/topicAction";
+import {EMPTY_TOPIC, FIND_TOPICS_FOR_LESSON} from "../../actions/topicAction";
 import {DELETE_MODULE, deleteModule} from "../../actions/moduleAction";
 
 class LessonListComponent extends React.Component {
@@ -245,7 +245,7 @@ const
                 topicService.findTopicsForLesson(lessonId)
                     .then(actualTopics =>
                         dispatch({
-                            type: FIND_ALL_TOPICS,
+                            type: FIND_TOPICS_FOR_LESSON,
                             topics: actualTopics
 
                         }))

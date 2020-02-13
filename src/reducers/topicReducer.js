@@ -1,4 +1,4 @@
-import {CREATE_TOPIC, DELETE_TOPIC, EMPTY_TOPIC, FIND_ALL_TOPICS, UPDATE_TOPIC} from "../actions/topicAction";
+import {CREATE_TOPIC, DELETE_TOPIC, EMPTY_TOPIC, FIND_TOPICS_FOR_LESSON, UPDATE_TOPIC} from "../actions/topicAction";
 import {CREATE_LESSON, UPDATE_LESSON} from "../actions/lessonAction";
 
 const initialState = {
@@ -61,7 +61,7 @@ const topicReducer = (state = initialState, action) => {
                 edit: false
             }
 
-        case FIND_ALL_TOPICS:
+        case FIND_TOPICS_FOR_LESSON:
             return {
                 selectedTopic: state.selectedTopic,
                 topics: action.topics,

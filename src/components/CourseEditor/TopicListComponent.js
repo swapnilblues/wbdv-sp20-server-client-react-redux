@@ -1,10 +1,10 @@
 import React from "react";
 // import TopicListItem from "./TopicListItem";
 import {connect} from "react-redux";
-import {createModule, deleteModule, FIND_ALL_MODULES} from "../../actions/moduleAction";
+import {createModule, deleteModule} from "../../actions/moduleAction";
 import moduleService from "../../services/ModuleService"
 import topicService from "../../services/TopicService"
-import {CREATE_TOPIC, DELETE_TOPIC, FIND_ALL_TOPICS, UPDATE_TOPIC} from "../../actions/topicAction";
+import {CREATE_TOPIC, DELETE_TOPIC, FIND_TOPICS_FOR_LESSON, UPDATE_TOPIC} from "../../actions/topicAction";
 import lessonService from "../../services/LessonService";
 import {CREATE_LESSON, UPDATE_LESSON} from "../../actions/lessonAction";
 
@@ -253,7 +253,7 @@ const dispatchToPropertyMapper = (dispatch) => {
             topicService.findTopicsForLesson(lessonId)
                 .then(actualTopics =>
                     dispatch({
-                        type: FIND_ALL_TOPICS,
+                        type: FIND_TOPICS_FOR_LESSON,
                         topics: actualTopics
 
                     }))
