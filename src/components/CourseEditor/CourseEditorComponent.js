@@ -160,7 +160,10 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId, topi
                     </div>
                     <div className="col-sm-8">
 
-                            <LessonListComponent/>
+                            <LessonListComponent
+                                courseId = {courseId}
+                                moduleId = {moduleId}
+                            />
                         {/*<ul className="nav nav-pills wbdv-topic-pill-list">*/}
                         {/*    <LessonListComponent/>*/}
 
@@ -186,7 +189,11 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId, topi
 
 
                         <div>
-                        <TopicListComponent/>
+                        <TopicListComponent
+                            courseId = {courseId}
+                            moduleId = {moduleId}
+                            topicId = {topicId}
+                        />
                         {/*<ul className="nav nav-pills wbdv-topic-pill-list">*/}
 
                         {/*    <li className="wbdv-topic-pill bg-secondary">*/}
@@ -209,6 +216,8 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId, topi
                         {/*</ul>*/}
 
                         <WidgetListComponent
+                            courseId = {courseId}
+                            moduleId = {moduleId}
                             topicId = {topicId}
                         />
                         </div>

@@ -44,27 +44,33 @@ class ModuleListComponent extends React.Component {
                                 // alert(this.props.selected)
                                 // alert(this.props.edit)
                                 return (
+                                    <Link to={`/course-editor/${this.props.courseId}/module/${module._id}`} >
                                     <li className="list-group-item wbdv-module-item active" key={module._id}
                                         onClick={async () => {
 
                                             await this.props.selectModule(module._id)
+
                                             // await this.props.findLessonsForModule(module._id)
                                             // await this.props.setLessonToDefault()
                                             // await this.props.emptyTopic()
                                         }}>
 
+
                             <span className="wbdv-module-item-title">
                                     {module.title}
                             </span>
+
                                         <span onClick={() => this.props.editState()}>
                                         <i className="fas fa-pencil-alt cursor-pointer wbdv-module-item-edit-btn"/>
                                     </span>
 
-
-                                    </li>)
+                                    </li>
+                                    </Link>)
                             } else if (this.props.edit && this.props.selected === module._id) {
                                 // alert("B")
                                 return (
+                                    <Link to={`/course-editor/${this.props.courseId}/module/${module._id}`} >
+
                                     <li className="list-group-item wbdv-module-item active" key={module._id}
                                         onClick={async () => {
                                             await this.props.selectModule(module._id)
@@ -113,11 +119,12 @@ class ModuleListComponent extends React.Component {
                                         {/*<span onClick={() => */}
                                         {/*this.prop}*/}
                                     </li>
+                                    </Link>
                                 )
                             } else {
                                 // alert("C")
                                 return (
-
+                                   <Link to={`/course-editor/${this.props.courseId}/module/${module._id}`} >
                                     <li className="list-group-item bg-dark wbdv-module-item" key={module._id}
                                         onClick={async () => {
                                             await this.props.selectModule(module._id)
@@ -133,7 +140,8 @@ class ModuleListComponent extends React.Component {
                                            onClick={() => this.setState({editing: true, selected1: false})}/>
 
 
-                                    </li>)
+                                    </li>
+                                   </Link>)
                             }
                         }
                     )

@@ -7,6 +7,7 @@ import topicService from "../../services/TopicService"
 import {CREATE_TOPIC, DELETE_TOPIC, FIND_TOPICS_FOR_LESSON, UPDATE_TOPIC} from "../../actions/topicAction";
 import lessonService from "../../services/LessonService";
 import {CREATE_LESSON, UPDATE_LESSON} from "../../actions/lessonAction";
+import {Link} from "react-router-dom";
 
 
 class TopicListComponent extends React.Component {
@@ -27,6 +28,7 @@ class TopicListComponent extends React.Component {
                                 if (!this.props.edit && this.props.selectedTopic === topic._id) {
                                     // alert("A")
                                     return (
+                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${this.props.selectedLesson}/topic/${topic._id}`} >
                                         <li className="list-group-item wbdv-topic-pill active"
                                             onClick={async () => {
                                                 // this.props.findTopicsForLesson(lesson._id)
@@ -43,11 +45,13 @@ class TopicListComponent extends React.Component {
                                 </span>
 
                                         </li>
+                                        </Link>
                                     )
 
                                 } else if(this.props.edit && this.props.selectedTopic === topic._id) {
                                     // alert("B")
                                     return (
+                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${this.props.selectedLesson}/topic/${topic._id}`} >
                                         <li className="list-group-item wbdv-topic-pill active"
                                             // onClick={async () => {
                                             //     await this.props.selectLesson(lesson._id)
@@ -95,10 +99,12 @@ class TopicListComponent extends React.Component {
                                 <i className="fas fa-times wbdv-module-item-delete-btn"/>
                                    </span>
                                         </li>
+                                        </Link>
                                     )
                                 }else {
                                     // alert("C")
                                     return (
+                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${this.props.selectedLesson}/topic/${topic._id}`} >
                                         <li className="list-group-item wbdv-topic-pill bg-secondary"
                                             onClick={async () => {
                                                 // this.props.findTopicsForLesson(lesson._id)
@@ -111,8 +117,8 @@ class TopicListComponent extends React.Component {
                                             <span>
                                 <i className="fas fa-pencil-alt cursor-pointer wbdv-module-item-edit-btn"/>
                                 </span>
-
                                         </li>
+                                        </Link>
                                     )
                                 }
 
@@ -204,7 +210,7 @@ const stateToPropertyMapper = (state) => {
     return {
         topics: state.topic1.topics,
         // modules: state.module1.modules,
-        // selected: state.module1.selected,
+        selected: state.module1.selected,
         selectedLesson : state.lesson1.selectedLesson,
         selectedTopic : state.topic1.selectedTopic,
         edit: state.topic1.edit
