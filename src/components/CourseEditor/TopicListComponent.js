@@ -7,6 +7,7 @@ import topicService from "../../services/TopicService"
 import {CREATE_TOPIC, DELETE_TOPIC, FIND_TOPICS_FOR_LESSON, UPDATE_TOPIC} from "../../actions/topicAction";
 import lessonService from "../../services/LessonService";
 import {CREATE_LESSON, UPDATE_LESSON} from "../../actions/lessonAction";
+import {Link} from "react-router-dom";
 
 
 class TopicListComponent extends React.Component {
@@ -99,6 +100,8 @@ class TopicListComponent extends React.Component {
                                 }else {
                                     // alert("C")
                                     return (
+                                        <Link to="/course-editor/qZpegasWGmZqrK6l/topic/111">
+
                                         <li className="list-group-item wbdv-topic-pill bg-secondary"
                                             onClick={async () => {
                                                 // this.props.findTopicsForLesson(lesson._id)
@@ -113,6 +116,7 @@ class TopicListComponent extends React.Component {
                                 </span>
 
                                         </li>
+                                        </Link>
                                     )
                                 }
 
