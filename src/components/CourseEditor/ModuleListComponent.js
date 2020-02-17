@@ -6,6 +6,7 @@ import moduleService from "../../services/ModuleService"
 import lessonService from "../../services/LessonService";
 import {FIND_LESSON_FOR_MODULE, SET_LESSON_TO_DEFAULT} from "../../actions/lessonAction";
 import {EMPTY_TOPIC} from "../../actions/topicAction";
+import {Link} from "react-router-dom";
 
 
 class ModuleListComponent extends React.Component {
@@ -140,6 +141,15 @@ class ModuleListComponent extends React.Component {
                 <li className="list-group-item bg-dark wbdv-module-item">
                     <i className="fas fa-plus wbdv-module-item-add-btn"
                        onClick={() => this.props.createModule(this.props.courseId)}/>
+                </li>
+
+                <li>
+                     <Link to="/course-editor/qZpegasWGmZqrK6l/topic/111">
+                         111
+                     </Link>
+                    <Link to="/course-editor/qZpegasWGmZqrK6l/topic/222">
+                        222
+                    </Link>
                 </li>
             </ul>
 

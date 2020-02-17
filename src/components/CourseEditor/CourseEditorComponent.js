@@ -7,22 +7,25 @@ import {createStore, combineReducers} from 'redux';
 import {connect, Provider} from 'react-redux'
 import moduleReducer from "../../reducers/moduleReducer";
 import lessonReducer from "../../reducers/lessonReducer";
+import widgetReducer from "../../reducers/widgetReducer";
 import selectedCourse from "./ModuleListComponent";
 import TopicListComponent from "./TopicListComponent";
 import topicReducer from "../../reducers/topicReducer";
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import WidgetListComponent from "./WidgetListComponent";
 
 const reducer = combineReducers({
     lesson1 : lessonReducer,
     module1 : moduleReducer,
-    topic1 : topicReducer
+    topic1 : topicReducer,
+    widget1  : widgetReducer
 })
 const store = createStore(reducer)
 
 
 const moduleId = 'abcd'
 
-const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
+const CourseEditorComponent = ({hideCourseEditor, match, history, courseId, topicId}) =>
     <Provider store={store}>
         <div>
             {/*<h1>ABCD {courseId} </h1>*/}
@@ -204,7 +207,13 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId}) =>
                         {/*        </a>*/}
                         {/*    </li>*/}
                         {/*</ul>*/}
+
+                        <WidgetListComponent
+                            topicId = {topicId}
+                        />
                         </div>
+
+
 
                         <ul className="nav nav-pills">
                             <li className="wbdv-topic-edit  ml-auto">

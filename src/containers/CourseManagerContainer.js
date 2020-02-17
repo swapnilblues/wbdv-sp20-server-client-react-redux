@@ -127,11 +127,46 @@ class CourseManagerContainer extends React.Component {
                            exact={true}
                            render={(props) =>
                                <CourseEditorComponent
-                                   courseId = {props.match.params.courseId}
+                                   courseId={props.match.params.courseId}
                                    hideCourseEditor={this.hideCourseEditor}
                                    {...props}/>
                            }
-                      />
+                    />
+
+                    <Route path="/course-editor/:courseId/topic/:topicId"
+                           exact={true}
+                           render={(props) =>
+                               <CourseEditorComponent
+                                   courseId={props.match.params.courseId}
+                                   topicId={props.match.params.topicId}
+                                   hideCourseEditor={this.hideCourseEditor}
+                                   {...props}/>
+                           }
+                    />
+
+                    <Route path="/course-editor/:courseId/module/:moduleId"
+                           exact={true}
+                           render={(props) =>
+                               <CourseEditorComponent
+                                   courseId={props.match.params.courseId}
+                                   moduleId={props.match.params.moduleId}
+                                   hideCourseEditor={this.hideCourseEditor}
+                                   {...props}/>
+                           }
+                    />
+
+                    <Route path="/course-editor/:courseId/module/:moduleId/lesson/:lessonId"
+                           exact={true}
+                           render={(props) =>
+                               <CourseEditorComponent
+                                   courseId={props.match.params.courseId}
+                                   moduleId={props.match.params.moduleId}
+                                   lessonId={props.match.params.lessonId}
+                                   hideCourseEditor={this.hideCourseEditor}
+                                   {...props}/>
+                           }
+                    />
+
                     <Route path="/"
                            exact={true}
 
