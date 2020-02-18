@@ -6,7 +6,20 @@ import ParagraphWidget from "./ParagraphWidget";
 export default class Widget extends React.Component {
 
     state = {
-        widget: this.props.widget
+        widget: this.props.widget,
+        preview: false
+    }
+
+    changePreview = () => {
+        if (this.state.preview === true) {
+            this.setState({
+                preview: false
+            })
+        } else {
+            this.setState({
+                preview: true
+            })
+        }
     }
 
     render() {
@@ -18,6 +31,9 @@ export default class Widget extends React.Component {
                         onClick={async () => {
                             await this.props.updateWidget(this.props.widget.id, this.state.widget)
                             await this.props.save()
+                            await this.setState({
+                                preview: false
+                            })
                         }
                         }>
                         <button className="wbdv-topic-save btn btn-success">Save</button>
@@ -28,11 +44,20 @@ export default class Widget extends React.Component {
                             <button className="wbdv-topic-preview btn btn-white">Preview</button>
                         </a>
                     </li>
-                    <li className="wbdv-topic-edit ml-right">
+                    {!this.state.preview &&
+                    <li className="wbdv-topic-edit ml-right" onClick={() => this.changePreview()}>
                         <a href="#" className="wbdv-topic-toggle nav-link text-dark">
                             <i className="wbdv-topic-toggle fas fa-toggle-off fa-lg"/>
                         </a>
                     </li>
+                    }
+                    {this.state.preview &&
+                    <li className="wbdv-topic-edit ml-right" onClick={() => this.changePreview()}>
+                        <a href="#" className="wbdv-topic-toggle nav-link text-dark">
+                            <i className="wbdv-topic-toggle fas fa-toggle-on fa-lg"/>
+                        </a>
+                    </li>
+                    }
                 </ul>
                 }
                 {this.props.widget.type === "HEADING" &&
@@ -47,6 +72,7 @@ export default class Widget extends React.Component {
                 <div>
 
                     <br/>
+                    {!this.state.preview &&
                     <div className="wbdv-topic-widget-div row-4 border border-secondary">
                         <ul className="nav nav-pills">
                             <li className="wbdv-topic-edit">
@@ -172,15 +198,29 @@ export default class Widget extends React.Component {
 
                         </form>
 
-                        <h5>Preview</h5>
-                        {this.props.widget.size === 1 && <h6>{this.props.widget.text}</h6>}
-                        {this.props.widget.size === 2 && <h5>{this.props.widget.text}</h5>}
-                        {this.props.widget.size === 3 && <h4>{this.props.widget.text}</h4>}
-                        {this.props.widget.size === 4 && <h3>{this.props.widget.text}</h3>}
-                        {this.props.widget.size === 5 && <h2>{this.props.widget.text}</h2>}
-                        {this.props.widget.size === 6 && <h1>{this.props.widget.text}</h1>}
+                        {/*<h5>Preview</h5>*/}
+                        {/*{this.state.widget.size === 1 && <h1>{this.state.widget.text}</h1>}*/}
+                        {/*{this.state.widget.size === 2 && <h2>{this.state.widget.text}</h2>}*/}
+                        {/*{this.state.widget.size === 3 && <h3>{this.state.widget.text}</h3>}*/}
+                        {/*{this.state.widget.size === 4 && <h4>{this.state.widget.text}</h4>}*/}
+                        {/*{this.state.widget.size === 5 && <h5>{this.state.widget.text}</h5>}*/}
+                        {/*{this.state.widget.size === 6 && <h6>{this.state.widget.text}</h6>}*/}
 
                     </div>
+                    }
+                    {/*End of preview == false*/}
+
+                    {this.state.preview &&
+                    <div className="row-4 border border-secondary">
+                        <h5>Preview</h5>
+                        {this.state.widget.size === 1 && <h1>{this.state.widget.text}</h1>}
+                        {this.state.widget.size === 2 && <h2>{this.state.widget.text}</h2>}
+                        {this.state.widget.size === 3 && <h3>{this.state.widget.text}</h3>}
+                        {this.state.widget.size === 4 && <h4>{this.state.widget.text}</h4>}
+                        {this.state.widget.size === 5 && <h5>{this.state.widget.text}</h5>}
+                        {this.state.widget.size === 6 && <h6>{this.state.widget.text}</h6>}
+                    </div>
+                    }
                 </div>
                 }
 
@@ -191,16 +231,18 @@ export default class Widget extends React.Component {
                     newWidget={this.state.newWidget}
                 />
                 }
-                {this.props.editing &&
-                <span>
-                      <button onClick={() => this.props.deleteWidget(this.props.widget.id)}>
-                        X
-                      </button>
-                      <button onClick={() => this.props.save()}>
-                        Save
-                      </button>
-                </span>
-                }
+                {/*{this.props.editing &&*/}
+                {/*<span>*/}
+                {/*      <button onClick={() => this.props.deleteWidget(this.props.widget.id)}>*/}
+                {/*        X*/}
+                {/*      </button>*/}
+                {/*      <button onClick={() => this.props.save()}>*/}
+                {/*        Save*/}
+                {/*      </button>*/}
+                {/*</span>*/}
+                {/*}*/}
+
+
             </div>
 
         )

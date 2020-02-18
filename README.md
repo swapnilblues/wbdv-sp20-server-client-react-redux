@@ -5,7 +5,7 @@
 
 ### TODO
 - [x] Create Java Server
-- [ ] Create preview for Heading Widget
+- [x] Create preview for Heading Widget
 - [ ] Update Widget type 'HEADING' & 'PARAGRAPH'
 - [ ] Create Paragraph Widget
 - [ ] Create preview for Paragraph Widget

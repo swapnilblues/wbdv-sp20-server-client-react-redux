@@ -18,13 +18,26 @@ class WidgetListComponent extends React.Component {
 
 
     state = {
-        widget: {}
+        widget: {},
+        preview: false
     }
 
     save = () => {
         this.setState({
             widget: {}
         })
+    }
+
+    changePreview = () => {
+        if(this.state.preview === true) {
+            this.setState({
+                preview: false
+            })
+        }else {
+            this.setState({
+                preview: true
+            })
+        }
     }
 
     // render() {
@@ -65,6 +78,8 @@ class WidgetListComponent extends React.Component {
                 this.props.widgets.map(widget =>
                     <div id={widget.id}>
                         <Widget
+                            // preview = {this.state.preview}
+                            // changePreview = {this.changePreview}
                             save={this.save}
                             editing={widget === this.state.widget}
                             deleteWidget={this.props.deleteWidget}
@@ -74,7 +89,9 @@ class WidgetListComponent extends React.Component {
                             <button onClick={() => this.setState({
                                 widget: widget
                             })}>
-                                EDIT
+                                <span>
+                                <i className="fas fa-pencil-alt cursor-pointer"/>
+                                </span>
                             </button>
                             }
                     </div>
