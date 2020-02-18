@@ -35,6 +35,15 @@ const topicReducer = (state = initialState, action) => {
 
             }
 
+        case "DESELECT_TOPIC":
+            return {
+                edit: state.edit,
+                selectedTopic: 'bcd',
+                topics: [
+                    ...state.topics]
+
+            }
+
         case "EDIT_TRUE_TOPIC":
             return {
                 edit: false,

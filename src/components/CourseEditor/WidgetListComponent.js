@@ -27,10 +27,39 @@ class WidgetListComponent extends React.Component {
         })
     }
 
+    // render() {
+    //     return (
+    //         <div>
+    //
+    //             <h1>Widget List: {this.props.selectedTopic}</h1>
+    //             {this.props.widgets &&
+    //             this.props.widgets.map(widget =>
+    //                 <div id={widget.id}>
+    //                     <Widget
+    //                         save={this.save}
+    //                         editing={widget === this.state.widget}
+    //                         deleteWidget={this.props.deleteWidget}
+    //                         widget={widget}/>
+    //                     { widget !== this.state.widget &&
+    //                         <button onClick={() => this.setState({
+    //                             widget: widget
+    //                         })}>
+    //                             ...
+    //                         </button>
+    //                     }
+    //                 </div>
+    //             )
+    //             }
+    //             <button onClick={() => this.props.createWidget(this.props.selectedTopic)}>
+    //                 +
+    //             </button>
+    //         </div>
+    //     )
+    // }
+
     render() {
         return (
             <div>
-
                 <h1>Widget List: {this.props.selectedTopic}</h1>
                 {this.props.widgets &&
                 this.props.widgets.map(widget =>
@@ -39,20 +68,27 @@ class WidgetListComponent extends React.Component {
                             save={this.save}
                             editing={widget === this.state.widget}
                             deleteWidget={this.props.deleteWidget}
+                            updateWidget={this.props.updateWidget}
                             widget={widget}/>
-                        { widget !== this.state.widget &&
+                            { widget !== this.state.widget &&
                             <button onClick={() => this.setState({
                                 widget: widget
                             })}>
-                                ...
+                                EDIT
                             </button>
-                        }
+                            }
                     </div>
-                )
-                }
-                <button onClick={() => this.props.createWidget(this.props.topicId)}>
-                    +
-                </button>
+                )}
+
+                <div className="row-8" >
+                    <ul className="nav nav-pills">
+                        <li className="wbdv-course-add ml-auto" onClick={() => this.props.createWidget(this.props.selectedTopic)}>
+                            <i className="wbdv-course-add-btn fas fa-plus fa-2x"/>
+                        </li>
+                    </ul>
+                </div>
+
+
             </div>
         )
     }
@@ -64,6 +100,20 @@ const stateToPropertyManager = (state) => ({
 })
 
 const dispatchToPropertyMapper = (dispatch) => ({
+
+    updateWidget: (wid, newWidget) => {
+      fetch(`http://localhost:8080/api/widgets/${wid}`, {
+          method: "PUT",
+          body: JSON.stringify(newWidget),
+          headers: {
+              'content-type': 'application/json'
+          }
+      }).then(response => response.json())
+          .then(actualWidget => dispatch({
+              type: "UPDATE_WIDGET",
+              widget: actualWidget
+          }))
+    },
 
     createWidget: (tid) =>
         fetch(`http://localhost:8080/api/topics/${tid}/widgets`, {

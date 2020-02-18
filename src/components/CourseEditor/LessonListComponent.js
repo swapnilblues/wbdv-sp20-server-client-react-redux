@@ -28,7 +28,7 @@ class LessonListComponent extends React.Component {
                                 if (!this.props.edit && this.props.selectedLesson === lesson._id) {
                                     // alert("A")
                                     return (
-                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected._id}/lesson/${lesson._id}`} >
+                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${lesson._id}`} >
                                         <li className="list-group-item wbdv-topic-pill active"
                                             onClick={async () => {
                                                 // this.props.findTopicsForLesson(lesson._id)
@@ -108,6 +108,7 @@ class LessonListComponent extends React.Component {
                                                 // this.props.findTopicsForLesson(lesson._id)
                                                 // await
                                                 await this.props.selectLesson(lesson._id)
+                                                await this.props.deSelectTopic()
                                                 await this.props.findTopicsForLesson(lesson._id)
                                             }}>
                                             <a className="nav-link text-white" href="#">{lesson.title}</a>
@@ -181,6 +182,7 @@ const
             // modules: state.module1.modules,
             selected: state.module1.selected,
             selectedLesson: state.lesson1.selectedLesson,
+            selectedTopic: state.topic1.selectedTopic,
             edit: state.lesson1.edit
             // history: [...state.history],
             // courseId : [ ...state.courseId]
@@ -261,6 +263,13 @@ const
                 dispatch({
                         type: "SELECTED_LESSON",
                         lessonId: lessonId
+                    }
+                )
+            },
+
+            deSelectTopic: () => {
+                dispatch({
+                        type: "DESELECT_TOPIC",
                     }
                 )
             },
