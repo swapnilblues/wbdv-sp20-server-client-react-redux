@@ -60,7 +60,7 @@ export default class Widget extends React.Component {
                     }
                 </ul>
                 }
-                {this.props.widget.type === "HEADING" &&
+                {this.state.widget.type === "HEADING" &&
                 // <HeadingWidget
                 //     editing = {this.props.editing}
                 //     widget = {this.props.widget}
@@ -72,12 +72,13 @@ export default class Widget extends React.Component {
                 <div>
 
                     <br/>
-                    {!this.state.preview &&
+                    {!this.state.preview && this.props.editing &&
                     <div className="wbdv-topic-widget-div row-4 border border-secondary">
                         <ul className="nav nav-pills">
                             <li className="wbdv-topic-edit">
-                                <h4 className="wbdv-topic-heading">{this.state.widget.type} widget</h4>
+                                <h4 className="wbdv-topic-heading">Heading Widget</h4>
                             </li>
+
                             <li className="wbdv-topic-edit ml-auto">
                                 <a href="#" className="wbdv-arrow-link nav-link text-dark">
                                     <i className="wbdv-topic-arrow-up ml-auto far fa-arrow-alt-circle-up fa-lg"/>
@@ -93,9 +94,24 @@ export default class Widget extends React.Component {
 
 
                                 <label>
-                                    <select className="form-control wbdv-topic-edit-heading">
-                                        <option value="Heading">Heading</option>
-                                        <option value="Paragraph">Paragraph</option>
+                                    <select className="form-control wbdv-topic-edit-heading"
+                                            onChange={(e) => {
+                                                let newType = e.target.value
+                                                this.setState(prevState => ({
+                                                    widget: {
+                                                        ...prevState.widget,
+                                                        type: newType
+                                                    },
+                                                    newWidget: {
+                                                        ...prevState.newWidget,
+                                                        type: newType
+                                                    }
+                                                }))
+                                            }}
+                                            value={this.state.widget.type}
+                                    >
+                                        <option value="HEADING">Heading</option>
+                                        <option value="PARAGRAPH">Paragraph</option>
                                     </select>
                                 </label>
 
@@ -198,21 +214,13 @@ export default class Widget extends React.Component {
 
                         </form>
 
-                        {/*<h5>Preview</h5>*/}
-                        {/*{this.state.widget.size === 1 && <h1>{this.state.widget.text}</h1>}*/}
-                        {/*{this.state.widget.size === 2 && <h2>{this.state.widget.text}</h2>}*/}
-                        {/*{this.state.widget.size === 3 && <h3>{this.state.widget.text}</h3>}*/}
-                        {/*{this.state.widget.size === 4 && <h4>{this.state.widget.text}</h4>}*/}
-                        {/*{this.state.widget.size === 5 && <h5>{this.state.widget.text}</h5>}*/}
-                        {/*{this.state.widget.size === 6 && <h6>{this.state.widget.text}</h6>}*/}
-
                     </div>
                     }
                     {/*End of preview == false*/}
 
-                    {this.state.preview &&
+                    {this.state.widget.type === "HEADING" &&
                     <div className="row-4 border border-secondary">
-                        <h5>Preview</h5>
+                        <h5>Heading Preview</h5>
                         {this.state.widget.size === 1 && <h1>{this.state.widget.text}</h1>}
                         {this.state.widget.size === 2 && <h2>{this.state.widget.text}</h2>}
                         {this.state.widget.size === 3 && <h3>{this.state.widget.text}</h3>}
@@ -224,26 +232,155 @@ export default class Widget extends React.Component {
                 </div>
                 }
 
-                {this.props.widget.type === "PARAGRAPH" &&
-                <ParagraphWidget
-                    editing={this.props.editing}
-                    widget={this.props.widget}
-                    newWidget={this.state.newWidget}
-                />
+
+
+                {this.state.widget.type === "PARAGRAPH" &&
+
+
+                    //TODO Refactor to Paragraph Widget Class
+
+                    // <ParagraphWidget
+                    //     editing={this.props.editing}
+                    //     widget={this.props.widget}
+                    //     newWidget={this.state.newWidget}
+                    // />
+                    // }
+                    // {/*{this.props.editing &&*/}
+                    // {/*<span>*/}
+                    // {/*      <button onClick={() => this.props.deleteWidget(this.props.widget.id)}>*/}
+                    // {/*        X*/}
+                    // {/*      </button>*/}
+                    // {/*      <button onClick={() => this.props.save()}>*/}
+                    // {/*        Save*/}
+                    // {/*      </button>*/}
+                    // {/*</span>*/}
+                    // {/*}*/}
+                <div>
+                    <br/>
+                    {!this.state.preview && this.props.editing &&
+                    <div className="wbdv-topic-widget-div row-4 border border-secondary">
+                        <ul className="nav nav-pills">
+                            <li className="wbdv-topic-edit">
+                                <h4 className="wbdv-topic-heading">Paragraph Widget</h4>
+                            </li>
+                            <li className="wbdv-topic-edit ml-auto">
+                                <a href="#" className="wbdv-arrow-link nav-link text-dark">
+                                    <i className="wbdv-topic-arrow-up ml-auto far fa-arrow-alt-circle-up fa-lg"/>
+                                </a>
+                            </li>
+
+                            <li className="wbdv-topic-edit">
+                                <a href="#" className="wbdv-arrow-link nav-link text-dark">
+                                    <i className="wbdv-topic-arrow-down far fa-arrow-alt-circle-down fa-lg"/>
+                                </a>
+                            </li>
+                            <li className="wbdv-topic-edit">
+
+
+                                <label>
+                                    <select className="form-control wbdv-topic-edit-heading"
+                                            onChange={(e) => {
+                                                let newType = e.target.value
+                                                this.setState(prevState => ({
+                                                    widget: {
+                                                        ...prevState.widget,
+                                                        type: newType
+                                                    },
+                                                    newWidget: {
+                                                        ...prevState.newWidget,
+                                                        type: newType
+                                                    }
+                                                }))
+                                            }}
+                                            value={this.state.widget.type}
+                                    >
+                                        <option value="HEADING">Heading</option>
+                                        <option value="PARAGRAPH">Paragraph</option>
+                                    </select>
+                                </label>
+
+                            </li>
+                            {this.props.editing &&
+                            <li className="wbdv-topic-edit"
+                                onClick={() => this.props.deleteWidget(this.props.widget.id)}>
+                                <a href="#" className="wbdv-arrow-link nav-link text-dark">
+                                    <i className="wbdv-topic-edit-cancel-btn fas fa-times-circle fa-lg"/>
+
+                                </a>
+                            </li>
+                            }
+                        </ul>
+
+                        <br/>
+                        <form>
+                            <div className="outer-form">
+                                <div className="wdbv-widget-form form-group row">
+
+                                    <textarea className="form-control wbdv-field wbdv-heading-text"
+                                           id="heading"
+                                           onChange={(e) => {
+                                               const newText = e.target.value;
+                                               this.setState(prevState => ({
+                                                   widget: {
+                                                       ...prevState.widget,
+                                                       text: newText
+                                                   },
+                                                   newWidget: {
+                                                       ...prevState.newWidget,
+                                                       text: newText
+                                                   }
+
+                                               }))
+                                           }
+                                           }
+                                           placeholder="Heading Text"
+                                           value={this.state.widget.text}
+                                    />
+
+                                </div>
+                            </div>
+                            <div className="outer-form">
+                                <div className="wdbv-widget-form form-group row">
+                                    <input type="text" className="form-control wbdv-field wbdv-widget-name"
+                                           id="widgetName"
+                                           onChange={(e) => {
+                                               const newName = e.target.value
+                                               this.setState(prevState => ({
+                                                   widget: {
+                                                       ...prevState.widget,
+                                                       name: newName
+                                                   },
+                                                   newWidget: {
+                                                       ...prevState.newWidget,
+                                                       name: newName
+                                                   }
+                                               }))
+                                           }}
+
+                                           value={this.state.widget.name}
+                                           placeholder="Widget name"/>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    }
+                    {/*End of preview == false*/}
+
+                    {this.state.widget.type === "PARAGRAPH" &&
+                    <div className="row-4 border border-secondary">
+                        <h5>Paragraph Preview</h5>
+                        <p>{this.state.widget.text}</p>
+                    </div>
+                    }
+
+
+                </div>
+
                 }
-                {/*{this.props.editing &&*/}
-                {/*<span>*/}
-                {/*      <button onClick={() => this.props.deleteWidget(this.props.widget.id)}>*/}
-                {/*        X*/}
-                {/*      </button>*/}
-                {/*      <button onClick={() => this.props.save()}>*/}
-                {/*        Save*/}
-                {/*      </button>*/}
-                {/*</span>*/}
-                {/*}*/}
-
-
-            </div>
+                </div>
 
         )
     }
