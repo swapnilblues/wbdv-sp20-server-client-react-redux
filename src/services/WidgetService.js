@@ -1,7 +1,6 @@
 import {URL_DOMAIN} from "../common/constants";
 
 export const createWidget = (widgetId,widget) => {
-    // console.log(widget)
     return fetch(`${URL_DOMAIN}/api/topics/${widgetId}/widgets`,{
         method:'POST',
         body: JSON.stringify(
