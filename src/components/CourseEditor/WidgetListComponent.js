@@ -74,9 +74,12 @@ class WidgetListComponent extends React.Component {
         return (
             <div>
                 <h1>Widget List: {this.props.selectedTopic}</h1>
+                {console.log("Main",this.props.widgets)}
                 {this.props.widgets &&
                 this.props.widgets.map(widget =>
+
                     <div id={widget.id}>
+                        {console.log("Individual",widget)}
                         <Widget
                             // preview = {this.state.preview}
                             // changePreview = {this.changePreview}
@@ -126,10 +129,14 @@ const dispatchToPropertyMapper = (dispatch) => ({
               'content-type': 'application/json'
           }
       }).then(response => response.json())
-          .then(actualWidget => dispatch({
-              type: "UPDATE_WIDGET",
-              widget: actualWidget
-          }))
+          .then((actualWidget) => {
+              console.log("AC",actualWidget);
+              dispatch({
+                  type: "UPDATE_WIDGET",
+                  widget: actualWidget
+
+              })
+          })
     },
 
     createWidget: (tid) =>

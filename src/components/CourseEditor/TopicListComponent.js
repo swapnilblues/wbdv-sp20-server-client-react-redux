@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {createModule, deleteModule} from "../../actions/moduleAction";
 import moduleService from "../../services/ModuleService"
 import topicService from "../../services/TopicService"
-import {CREATE_TOPIC, DELETE_TOPIC, FIND_TOPICS_FOR_LESSON, UPDATE_TOPIC} from "../../actions/topicAction";
+import {CREATE_TOPIC, DELETE_TOPIC, EMPTY_TOPIC, FIND_TOPICS_FOR_LESSON, UPDATE_TOPIC} from "../../actions/topicAction";
 import lessonService from "../../services/LessonService";
 import {CREATE_LESSON, UPDATE_LESSON} from "../../actions/lessonAction";
 import {Link} from "react-router-dom";
@@ -39,7 +39,11 @@ class TopicListComponent extends React.Component {
                                             <a className="nav-link text-white" href="#">{topic.title}</a>
 
                                             <span
-                                                onClick={()=> this.props.editState2()}
+                                                onClick={async ()=> {
+                                                    await this.props.editState2()
+
+                                                    // await this.props.findWidgetsForTopic(this.props._id)
+                                                }}
                                             >
                                 <i className="fas fa-pencil-alt cursor-pointer wbdv-module-item-edit-btn"/>
                                 </span>
@@ -110,6 +114,7 @@ class TopicListComponent extends React.Component {
                                                 // this.props.findTopicsForLesson(lesson._id)
                                                 // await
                                                 await this.props.selectTopic(topic._id)
+
                                                 // await this.props.findTopicsForLesson(topic._id)
                                             }}>
                                             <a className="nav-link text-white" href="#">{topic.title}</a>
@@ -236,6 +241,14 @@ const dispatchToPropertyMapper = (dispatch) => {
             })
         },
 
+        findWidgetsForTopic: (tid) =>
+            fetch(`http://localhost:8080/api/topics/${tid}/widgets`)
+                .then(response => response.json())
+                .then(widgets => dispatch({
+                    type: "FIND_WIDGETS_FOR_TOPIC",
+                    widgets: widgets
+                })),
+
         createTopic: (moduleId) => {
             topicService.createTopic(moduleId, {
                 title: 'New Topic'
@@ -271,6 +284,13 @@ const dispatchToPropertyMapper = (dispatch) => {
                     topicId: topicId
                 }
             )
+        },
+
+        emptyWidget: () => {
+            dispatch({
+                type: "EMPTY_WIDGET"
+
+            })
         },
 
         // selectModule : (moduleId) =>

@@ -5,6 +5,16 @@ import ParagraphWidget from "./ParagraphWidget";
 
 export default class Widget extends React.Component {
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevState.widget.id!==this.props.widget.id) {
+            this.setState({
+                    widget: this.props.widget
+                }
+            )
+        }
+
+    }
+
     state = {
         widget: this.props.widget,
         preview: false
@@ -118,7 +128,11 @@ export default class Widget extends React.Component {
                             </li>
                             {this.props.editing &&
                             <li className="wbdv-topic-edit"
-                                onClick={() => this.props.deleteWidget(this.props.widget.id)}>
+                                onClick={() => {
+                                    alert(this.props.widget.id)
+                                    this.props.deleteWidget(this.props.widget.id)
+                                }}
+                            >
                                 <a href="#" className="wbdv-arrow-link nav-link text-dark">
                                     <i className="wbdv-topic-edit-cancel-btn fas fa-times-circle fa-lg"/>
 
@@ -372,7 +386,7 @@ export default class Widget extends React.Component {
                     {this.state.widget.type === "PARAGRAPH" &&
                     <div className="row-4 border border-secondary">
                         <h5>Paragraph Preview</h5>
-                        <p>{this.state.widget.text}</p>
+                        <pre>{this.state.widget.text}</pre>
                     </div>
                     }
 

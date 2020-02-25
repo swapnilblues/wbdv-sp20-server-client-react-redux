@@ -151,14 +151,14 @@ class ModuleListComponent extends React.Component {
                        onClick={() => this.props.createModule(this.props.courseId)}/>
                 </li>
 
-                <li>
-                     <Link to="/course-editor/qZpegasWGmZqrK6l/topic/111">
-                         111
-                     </Link>
-                    <Link to="/course-editor/qZpegasWGmZqrK6l/topic/222">
-                        222
-                    </Link>
-                </li>
+                {/*<li>*/}
+                {/*     <Link to="/course-editor/qZpegasWGmZqrK6l/topic/111">*/}
+                {/*         111*/}
+                {/*     </Link>*/}
+                {/*    <Link to="/course-editor/qZpegasWGmZqrK6l/topic/222">*/}
+                {/*        222*/}
+                {/*    </Link>*/}
+                {/*</li>*/}
             </ul>
 
         )
