@@ -25,7 +25,7 @@ export const findWidgetsForTopic = (topicId) => {
 }
 
 export const updateWidget = (widgetId,widget) => {
-    return fetch(`${URL_DOMAIN}/api/topics/${widgetId}/widgets`,{
+    return fetch(`${URL_DOMAIN}/api/widgets/${widgetId}`,{
         method:'PUT',
         body: JSON.stringify(widget),
         headers:{
@@ -34,5 +34,15 @@ export const updateWidget = (widgetId,widget) => {
     }).then(response => response.json())
 }
 
+export const upWidget = (widgetId) => {
+    return fetch(`${URL_DOMAIN}/api/widgets/up-widget/${widgetId}`)
+        .then(response => response.json())
+}
 
-export default {createWidget, deleteWidget,findWidgetsForTopic, updateWidget}
+export const downWidget = (widgetId) => {
+    return fetch(`${URL_DOMAIN}/api/widgets/down-widget/${widgetId}`)
+        .then(response => response.json())
+}
+
+
+export default {createWidget, deleteWidget,findWidgetsForTopic, updateWidget, upWidget, downWidget}

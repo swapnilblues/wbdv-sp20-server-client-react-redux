@@ -89,13 +89,17 @@ export default class Widget extends React.Component {
                                 <h4 className="wbdv-topic-heading">Heading Widget</h4>
                             </li>
 
-                            <li className="wbdv-topic-edit ml-auto">
+                            <li className="wbdv-topic-edit ml-auto"
+                                onClick={() => this.props.upWidget(this.state.widget.id)}
+                            >
                                 <a href="#" className="wbdv-arrow-link nav-link text-dark">
                                     <i className="wbdv-topic-arrow-up ml-auto far fa-arrow-alt-circle-up fa-lg"/>
                                 </a>
                             </li>
 
-                            <li className="wbdv-topic-edit">
+                            <li className="wbdv-topic-edit"
+                                onClick={() => this.props.downWidget(this.state.widget.id)}
+                            >
                                 <a href="#" className="wbdv-arrow-link nav-link text-dark">
                                     <i className="wbdv-topic-arrow-down far fa-arrow-alt-circle-down fa-lg"/>
                                 </a>
@@ -277,13 +281,16 @@ export default class Widget extends React.Component {
                             <li className="wbdv-topic-edit">
                                 <h4 className="wbdv-topic-heading">Paragraph Widget</h4>
                             </li>
-                            <li className="wbdv-topic-edit ml-auto">
+                            <li className="wbdv-topic-edit ml-auto"
+                                onClick={() => this.props.upWidget(this.state.widget.id)}>
                                 <a href="#" className="wbdv-arrow-link nav-link text-dark">
                                     <i className="wbdv-topic-arrow-up ml-auto far fa-arrow-alt-circle-up fa-lg"/>
                                 </a>
                             </li>
 
-                            <li className="wbdv-topic-edit">
+                            <li className="wbdv-topic-edit"
+                                onClick={() => this.props.downWidget(this.state.widget.id)}
+                            >
                                 <a href="#" className="wbdv-arrow-link nav-link text-dark">
                                     <i className="wbdv-topic-arrow-down far fa-arrow-alt-circle-down fa-lg"/>
                                 </a>

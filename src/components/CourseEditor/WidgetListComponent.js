@@ -88,6 +88,8 @@ class WidgetListComponent extends React.Component {
                             editing={widget === this.state.widget}
                             deleteWidget={this.props.deleteWidget}
                             updateWidget={this.props.updateWidget}
+                            downWidget={this.props.downWidget}
+                            upWidget={this.props.upWidget}
                             widget={widget}/>
                             { widget !== this.state.widget &&
                             <button onClick={() => this.setState({
@@ -154,6 +156,20 @@ const dispatchToPropertyMapper = (dispatch) => ({
 
     findWidgetsForTopic: (tid) =>
         widgetService.findWidgetsForTopic(tid)
+            .then(widgets => dispatch({
+                type: "FIND_WIDGETS_FOR_TOPIC",
+                widgets: widgets
+            })),
+
+    upWidget: (wid) =>
+        widgetService.upWidget(wid)
+            .then(widgets => dispatch({
+                type: "FIND_WIDGETS_FOR_TOPIC",
+                widgets: widgets
+            })),
+
+    downWidget: (wid) =>
+        widgetService.downWidget(wid)
             .then(widgets => dispatch({
                 type: "FIND_WIDGETS_FOR_TOPIC",
                 widgets: widgets
