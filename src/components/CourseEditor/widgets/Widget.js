@@ -129,7 +129,7 @@ export default class Widget extends React.Component {
                             {this.props.editing &&
                             <li className="wbdv-topic-edit"
                                 onClick={() => {
-                                    alert(this.props.widget.id)
+                                    // alert(this.props.widget.id)
                                     this.props.deleteWidget(this.props.widget.id)
                                 }}
                             >

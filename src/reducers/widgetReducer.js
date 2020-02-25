@@ -32,8 +32,8 @@ const widgetReducer = (state = initialState, action) => {
             }
 
         case "DELETE_WIDGET":
-            console.log(state.widgets)
-            console.log(action.widgetId)
+            // console.log(state.widgets)
+            // console.log(action.widgetId)
             return {
                 widgets: state.widgets.filter(widget => widget.id !== action.widgetId)
                 // ,
@@ -43,7 +43,7 @@ const widgetReducer = (state = initialState, action) => {
                 // newHeadingWidget: state.newHeadingWidget
             }
         case "FIND_WIDGETS_FOR_TOPIC":
-            console.log("AAAA",action.widgets)
+            // console.log("AAAA",action.widgets)
             return {
                 widgets: action.widgets
                 // ,

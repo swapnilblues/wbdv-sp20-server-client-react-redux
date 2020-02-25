@@ -6,8 +6,8 @@
 ### TODO
 - [x] Create Java Server
 - [x] Create preview for Heading Widget
-- [ ] Update Widget type 'HEADING' & 'PARAGRAPH'
-- [ ] Create Paragraph Widget
-- [ ] Create preview for Paragraph Widget
+- [x] Update Widget type 'HEADING' & 'PARAGRAPH'
+- [x] Create Paragraph Widget
+- [x] Create preview for Paragraph Widget
 - [ ] Reorder widget from up and down button
 - [ ] Merge development and master branch

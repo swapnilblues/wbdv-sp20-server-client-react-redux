@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import HeadingWidget from "./widgets/HeadingWidget";
 import ParagraphWidget from "./widgets/ParagraphWidget";
+import widgetService from "../../services/WidgetService";
 import Widget from "./widgets/Widget";
 
 class WidgetListComponent extends React.Component {
@@ -74,12 +75,12 @@ class WidgetListComponent extends React.Component {
         return (
             <div>
                 <h1>Widget List: {this.props.selectedTopic}</h1>
-                {console.log("Main",this.props.widgets)}
+                {/*{console.log("Main",this.props.widgets)}*/}
                 {this.props.widgets &&
                 this.props.widgets.map(widget =>
 
                     <div id={widget.id}>
-                        {console.log("Individual",widget)}
+                        {/*{console.log("Individual",widget)}*/}
                         <Widget
                             // preview = {this.state.preview}
                             // changePreview = {this.changePreview}
@@ -122,15 +123,9 @@ const stateToPropertyManager = (state) => ({
 const dispatchToPropertyMapper = (dispatch) => ({
 
     updateWidget: (wid, newWidget) => {
-      fetch(`http://localhost:8080/api/widgets/${wid}`, {
-          method: "PUT",
-          body: JSON.stringify(newWidget),
-          headers: {
-              'content-type': 'application/json'
-          }
-      }).then(response => response.json())
+      widgetService.updateWidget(wid, newWidget)
           .then((actualWidget) => {
-              console.log("AC",actualWidget);
+              // console.log("AC",actualWidget);
               dispatch({
                   type: "UPDATE_WIDGET",
                   widget: actualWidget
@@ -139,35 +134,26 @@ const dispatchToPropertyMapper = (dispatch) => ({
           })
     },
 
-    createWidget: (tid) =>
-        fetch(`http://localhost:8080/api/topics/${tid}/widgets`, {
-            method: "POST",
-            body: JSON.stringify(
-                {
-                    id: (new Date()).getTime() + "",
-                    title: "New Widget"
-                }),
-            headers: {
-                'content-type': 'application/json'
-            }
-        }).then(response => response.json())
-            .then(actualWidget => dispatch({
-                type: "CREATE_WIDGET",
-                widget: actualWidget
-            })),
+    createWidget: (tid) => {
+        widgetService.createWidget(tid, {
+            id: (new Date()).getTime() + "",
+            title: "New Widget"
+        }).then(actualWidget => dispatch({
+            type: "CREATE_WIDGET",
+            widget: actualWidget
+        }))
+    },
+
     deleteWidget: (wid) => {
-        fetch(`http://localhost:8080/api/widgets/${wid}`, {
-            method: "DELETE"
-        })
-            .then(response => response.json())
+        widgetService.deleteWidget(wid)
             .then(status => dispatch({
                 type: "DELETE_WIDGET",
                 widgetId: wid
             }))
     },
+
     findWidgetsForTopic: (tid) =>
-        fetch(`http://localhost:8080/api/topics/${tid}/widgets`)
-            .then(response => response.json())
+        widgetService.findWidgetsForTopic(tid)
             .then(widgets => dispatch({
                 type: "FIND_WIDGETS_FOR_TOPIC",
                 widgets: widgets
