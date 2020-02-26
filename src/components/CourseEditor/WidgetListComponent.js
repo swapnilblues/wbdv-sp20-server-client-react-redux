@@ -74,7 +74,7 @@ class WidgetListComponent extends React.Component {
     render() {
         return (
             <div>
-                <h1>Widget List: {this.props.selectedTopic}</h1>
+                <h1>Widget List: </h1>
                 {/*{console.log("Main",this.props.widgets)}*/}
                 {this.props.widgets &&
                 this.props.widgets.map(widget =>
