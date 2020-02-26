@@ -9,5 +9,5 @@
 - [x] Update Widget type 'HEADING' & 'PARAGRAPH'
 - [x] Create Paragraph Widget
 - [x] Create preview for Paragraph Widget
-- [ ] Reorder widget from up and down button
-- [ ] Merge development and master branch
+- [x] Reorder widget from up and down button
+- [x] Merge development and master branch
