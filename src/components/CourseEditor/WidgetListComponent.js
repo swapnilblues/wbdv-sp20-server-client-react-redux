@@ -102,14 +102,16 @@ class WidgetListComponent extends React.Component {
                             }
                     </div>
                 )}
-
-                <div className="row-8" >
+                {this.props.selectedTopic !== 'bcd' &&
+                <div className="row-8">
                     <ul className="nav nav-pills">
-                        <li className="wbdv-course-add ml-auto" onClick={() => this.props.createWidget(this.props.selectedTopic)}>
+                        <li className="wbdv-course-add ml-auto"
+                            onClick={() => this.props.createWidget(this.props.selectedTopic)}>
                             <i className="wbdv-course-add-btn fas fa-plus fa-2x"/>
                         </li>
                     </ul>
                 </div>
+                }
 
 
             </div>
