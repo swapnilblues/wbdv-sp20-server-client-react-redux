@@ -129,7 +129,6 @@ const dispatchToPropertyMapper = (dispatch) => ({
     updateWidget: (wid, newWidget) => {
       widgetService.updateWidget(wid, newWidget)
           .then((actualWidget) => {
-              // console.log("AC",actualWidget);
               dispatch({
                   type: "UPDATE_WIDGET",
                   widget: actualWidget

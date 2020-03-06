@@ -58,9 +58,9 @@ class LessonListComponent extends React.Component {
                                                 await this.props.findTopicsForLesson(lesson._id)
                                             }}>
 
-                                            <input onChange={async (e) =>
+                                            <input onChange={(e) =>
 
-                                                await this.setState({
+                                                 this.setState({
                                                     course: {
                                                         ...this.state.course,
                                                         title: e.target.value
