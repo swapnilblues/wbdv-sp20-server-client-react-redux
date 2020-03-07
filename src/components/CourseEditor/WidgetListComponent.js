@@ -7,12 +7,13 @@ import Widget from "./widgets/Widget";
 
 class WidgetListComponent extends React.Component {
 
-    componentDidMount() {
-        // this.props.findAllWidgets();
-        this.props.findWidgetsForTopic(this.props.topicId);
-    }
+    // componentDidMount() {
+    //     // this.props.findAllWidgets();
+    //     this.props.findWidgetsForTopic(1);
+    // }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+
         if (prevProps.topicId !== this.props.topicId)
             this.props.findWidgetsForTopic(this.props.topicId);
     }
@@ -139,7 +140,6 @@ const dispatchToPropertyMapper = (dispatch) => ({
 
     createWidget: (tid) => {
         widgetService.createWidget(tid, {
-            id: (new Date()).getTime() + "",
             title: "New Widget"
         }).then(actualWidget => dispatch({
             type: "CREATE_WIDGET",

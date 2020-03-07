@@ -13,19 +13,22 @@ import TopicListComponent from "./TopicListComponent";
 import topicReducer from "../../reducers/topicReducer";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import WidgetListComponent from "./WidgetListComponent";
+import TopicListComponent1 from "./TopicListComponentDB";
+import topicReducerDB from "../../reducers/topicReducerDB";
 
 const reducer = combineReducers({
     lesson1 : lessonReducer,
     module1 : moduleReducer,
     topic1 : topicReducer,
-    widget1  : widgetReducer
+    widget1  : widgetReducer,
+    topicDB1 : topicReducerDB
 })
 const store = createStore(reducer)
 
 
 const moduleId = 'abcd'
 
-const CourseEditorComponent = ({hideCourseEditor, match, history, courseId, topicId}) =>
+const CourseEditorComponent = ({hideCourseEditor, match, history, courseId, topicId, lessonId}) =>
     <Provider store={store}>
         <div>
             {/*<h1>ABCD {courseId} </h1>*/}
@@ -189,11 +192,21 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId, topi
 
 
                         <div>
-                        <TopicListComponent
-                            courseId = {courseId}
-                            moduleId = {moduleId}
-                            topicId = {topicId}
+                        {/*<TopicListComponent*/}
+                        {/*    courseId = {courseId}*/}
+                        {/*    moduleId = {moduleId}*/}
+                        {/*    lessonId = {lessonId}*/}
+                        {/*    topicId = {topicId}*/}
+                        {/*/>*/}
+
+                        <TopicListComponent1
+                                courseId = {courseId}
+                                moduleId = {moduleId}
+                                lessonId = {lessonId}
+                                topicId = {topicId}
                         />
+
+
                         {/*<ul className="nav nav-pills wbdv-topic-pill-list">*/}
 
                         {/*    <li className="wbdv-topic-pill bg-secondary">*/}

@@ -1,11 +1,10 @@
-import {URL_DOMAIN} from "../common/constants";
+import {URL_DOMAIN, URL_LOCALHOST} from "../common/constants";
 
-export const createWidget = (widgetId,widget) => {
-    return fetch(`${URL_DOMAIN}/api/topics/${widgetId}/widgets`,{
+export const createWidget = (topicId,widget) => {
+    return fetch(`${URL_LOCALHOST}/api/topics/${topicId}/widgets`,{
         method:'POST',
         body: JSON.stringify(
             {
-                id: (new Date()).getTime() + "",
                 title: "New Widget"
             }),
         headers:{
@@ -20,7 +19,7 @@ export const deleteWidget = (widgetId) =>
         }).then(response => response.json())
 
 export const findWidgetsForTopic = (topicId) => {
-    return fetch(`${URL_DOMAIN}/api/topics/${topicId}/widgets`)
+    return fetch(`${URL_LOCALHOST}/api/topics/${topicId}/widgets`)
         .then(response => response.json())
 }
 

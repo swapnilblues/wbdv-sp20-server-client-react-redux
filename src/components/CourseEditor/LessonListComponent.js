@@ -249,16 +249,25 @@ const
                     )
             },
 
-            findTopicsForLesson: (lessonId) => {
-                // console.log("Here",moduleId)
-                topicService.findTopicsForLesson(lessonId)
-                    .then(actualTopics =>
-                        dispatch({
-                            type: FIND_TOPICS_FOR_LESSON,
-                            topics: actualTopics
+            // findTopicsForLesson: (lessonId) => {
+            //     // console.log("Here",moduleId)
+            //     topicService.findTopicsForLesson(lessonId)
+            //         .then(actualTopics =>
+            //             dispatch({
+            //                 type: FIND_TOPICS_FOR_LESSON,
+            //                 topics: actualTopics
+            //
+            //             }))
+            // },
 
-                        }))
-            },
+            findTopicsForLesson: (lessonId) =>
+                fetch(`http://localhost:8080/api/lessons/${lessonId}/topics`)
+                    .then(response => response.json())
+                    .then(topics => dispatch({
+                        type: "SET_TOPICS",
+                        topics: topics
+                    })),
+
             selectLesson: (lessonId) => {
                 dispatch({
                         type: "SELECTED_LESSON",
