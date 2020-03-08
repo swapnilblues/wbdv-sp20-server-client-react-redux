@@ -1,5 +1,5 @@
 export const createTopic  = (lessonId, topic) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/bhaumik/lessons/${lessonId}/topics`, {
+    fetch(`http://localhost:8080/api/lessons/${lessonId}/topics`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
