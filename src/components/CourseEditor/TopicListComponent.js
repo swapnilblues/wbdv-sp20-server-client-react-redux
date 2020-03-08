@@ -25,16 +25,16 @@ class TopicListComponent extends React.Component {
                     {
                         this.props.topics && this.props.topics.map(topic => {
                                // alert(this.props.selectedTopic)
-                                if (!this.props.edit && this.props.selectedTopic === topic._id) {
+                                if (!this.props.edit && this.props.selectedTopic === topic.id) {
                                     // alert("A")
                                     return (
-                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${this.props.selectedLesson}/topic/${topic._id}`} >
+                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${this.props.selectedLesson}/topic/${topic.id}`} >
                                         <li className="list-group-item wbdv-topic-pill active"
                                             onClick={async () => {
-                                                // this.props.findTopicsForLesson(lesson._id)
+                                                // this.props.findTopicsForLesson(lesson.id)
                                                 // await
-                                                // await this.props.selectLesson(topic._id)
-                                                // await this.props.findTopicsForLesson(topic._id)
+                                                // await this.props.selectLesson(topic.id)
+                                                // await this.props.findTopicsForLesson(topic.id)
                                             }}>
                                             <a className="nav-link text-white" href="#">{topic.title}</a>
 
@@ -42,7 +42,7 @@ class TopicListComponent extends React.Component {
                                                 onClick={async ()=> {
                                                     await this.props.editState2()
 
-                                                    // await this.props.findWidgetsForTopic(this.props._id)
+                                                    // await this.props.findWidgetsForTopic(this.props.id)
                                                 }}
                                             >
                                 <i className="fas fa-pencil-alt cursor-pointer wbdv-module-item-edit-btn"/>
@@ -52,14 +52,14 @@ class TopicListComponent extends React.Component {
                                         </Link>
                                     )
 
-                                } else if(this.props.edit && this.props.selectedTopic === topic._id) {
+                                } else if(this.props.edit && this.props.selectedTopic === topic.id) {
                                     // alert("B")
                                     return (
-                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${this.props.selectedLesson}/topic/${topic._id}`} >
+                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${this.props.selectedLesson}/topic/${topic.id}`} >
                                         <li className="list-group-item wbdv-topic-pill active"
                                             // onClick={async () => {
-                                            //     await this.props.selectLesson(lesson._id)
-                                            //     await this.props.findTopicsForLesson(lesson._id)
+                                            //     await this.props.selectLesson(lesson.id)
+                                            //     await this.props.findTopicsForLesson(lesson.id)
                                             // }}
                                         >
 
@@ -94,7 +94,7 @@ class TopicListComponent extends React.Component {
                                 </span>
                                             <span
                                                 onClick={async () => {
-                                                await this.props.deleteTopic(topic._id)
+                                                await this.props.deleteTopic(topic.id)
                                                 // await this.props.setLessonToDefault()
                                                 // await this.props.emptyTopic()
                                                 // await this.props.editStateTrue1()
@@ -108,14 +108,15 @@ class TopicListComponent extends React.Component {
                                 }else {
                                     // alert("C")
                                     return (
-                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${this.props.selectedLesson}/topic/${topic._id}`} >
+                                        <Link to={`/course-editor/${this.props.courseId}/module/${this.props.selected}/lesson/${this.props.selectedLesson}/topic/${topic.id}`} >
                                         <li className="list-group-item wbdv-topic-pill bg-secondary"
                                             onClick={async () => {
-                                                // this.props.findTopicsForLesson(lesson._id)
+                                                // this.props.findTopicsForLesson(lesson.id)
                                                 // await
-                                                await this.props.selectTopic(topic._id)
+                                                await this.props.selectTopic(topic.id)
+                                                await this.props.findWidgetsForTopic(topic.id)
 
-                                                // await this.props.findTopicsForLesson(topic._id)
+                                                // await this.props.findTopicsForLesson(topic.id)
                                             }}>
                                             <a className="nav-link text-white" href="#">{topic.title}</a>
 
@@ -132,10 +133,10 @@ class TopicListComponent extends React.Component {
                                 // return (
                                 //     <li className="wbdv-topic-pill bg-secondary"
                                 //         onClick={async () => {
-                                //             // this.props.findTopicsForLesson(lesson._id)
+                                //             // this.props.findTopicsForLesson(lesson.id)
                                 //             // await
-                                //             await this.props.selectLesson(lesson._id)
-                                //             await this.props.findTopicsForLesson(lesson._id)
+                                //             await this.props.selectLesson(lesson.id)
+                                //             await this.props.findTopicsForLesson(lesson.id)
                                 //         }}>
                                 //         <a className="nav-link text-white" href="#">{lesson.title}</a>
                                 // <span>
@@ -145,7 +146,7 @@ class TopicListComponent extends React.Component {
                                 // <i className="fas fa-pencil-alt cursor-pointer wbdv-module-item-edit-btn"/>
                                 // </span>
                                 //         <span onClick={async () => {
-                                //             await this.props.deleteLesson(lesson._id)
+                                //             await this.props.deleteLesson(lesson.id)
                                 //             // await this.props.setLessonToDefault()
                                 //             await this.props.emptyTopic()
                                 //         }}>
@@ -181,7 +182,7 @@ class TopicListComponent extends React.Component {
     //                         <li className="wbdv-topic-pill bg-secondary">
     //                             <a className="nav-link text-white" href="#">{topic.title}</a>
     //                             <i onClick={  () =>
-    //                                 this.props.deleteTopic(topic._id)
+    //                                 this.props.deleteTopic(topic.id)
     //                                 // await this.props.setLessonToDefault()
     //                                 // await this.props.emptyTopic()
     //                             }
@@ -267,16 +268,13 @@ const dispatchToPropertyMapper = (dispatch) => {
                     topicId: topicId
                 })),
 
-        findTopicsForLesson: (lessonId) => {
-            // console.log("Here",moduleId)
-            topicService.findTopicsForLesson(lessonId)
-                .then(actualTopics =>
-                    dispatch({
-                        type: FIND_TOPICS_FOR_LESSON,
-                        topics: actualTopics
-
-                    }))
-        },
+        findTopicsForLesson: (lessonId) =>
+            fetch(`http://localhost:8080/api/lessons/${lessonId}/topics`)
+                .then(response => response.json())
+                .then(topics => dispatch({
+                    type:  FIND_TOPICS_FOR_LESSON,
+                    topics: topics
+                })),
 
         selectTopic: (topicId) => {
             dispatch({

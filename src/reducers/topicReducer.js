@@ -16,6 +16,13 @@ const topicReducer = (state = initialState, action) => {
         //         topics: state.topics
         //     }
 
+        case "SET_TOPICS":
+            return {
+                topics: action.topics,
+                selectedTopic: state.selectedTopic,
+                edit: state.edit
+            }
+
 
         case "EDIT_TOPIC":
             // alert("EE")
@@ -70,12 +77,12 @@ const topicReducer = (state = initialState, action) => {
                 edit: false
             }
 
-        case FIND_TOPICS_FOR_LESSON:
-            return {
-                selectedTopic: state.selectedTopic,
-                topics: action.topics,
-                edit: state.edit
-            }
+        // case FIND_TOPICS_FOR_LESSON:
+        //     return {
+        //         selectedTopic: state.selectedTopic,
+        //         topics: action.topics,
+        //         edit: state.edit
+        //     }
 
         case DELETE_TOPIC:
             return {

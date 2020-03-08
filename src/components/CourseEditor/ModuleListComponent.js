@@ -52,7 +52,8 @@ class ModuleListComponent extends React.Component {
 
                                             // await this.props.findLessonsForModule(module._id)
                                             // await this.props.setLessonToDefault()
-                                            // await this.props.emptyTopic()
+                                            await this.props.emptyTopic()
+                                            await this.props.emptyWidget()
                                         }}>
 
 
@@ -76,7 +77,8 @@ class ModuleListComponent extends React.Component {
                                             await this.props.selectModule(module._id)
                                             await this.props.findLessonsForModule(module._id)
                                             // await this.props.setLessonToDefault()
-                                            // await this.props.emptyTopic()
+                                            await this.props.emptyTopic()
+                                            await this.props.emptyWidget()
                                             // await this.props.editStateTrue()
                                         }}
                                     >
@@ -111,8 +113,8 @@ class ModuleListComponent extends React.Component {
                                             await this.props.deleteModule(module._id)
                                             await this.props.setModuleToDefault()
                                             await this.props.setLessonToDefault()
-                                            await this.props.setLessonToDefault()
                                             await this.props.emptyTopic()
+                                            await this.props.emptyWidget()
                                             await this.props.editStateTrue()
                                         }}
                                            className="fas fa-times wbdv-module-item-delete-btn"/>
@@ -131,6 +133,7 @@ class ModuleListComponent extends React.Component {
                                             await this.props.findLessonsForModule(module._id)
                                             await this.props.setLessonToDefault()
                                             await this.props.emptyTopic()
+                                            await this.props.emptyWidget()
                                         }}>
 
                                      <span className="wbdv-module-item-title">
@@ -220,6 +223,14 @@ const dispatchToPropertyMapper = (dispatch) => {
             // alert("ERR")
             dispatch({
                 type: EMPTY_TOPIC
+
+            })
+        },
+
+        emptyWidget: () => {
+            // alert("ABC")
+            dispatch({
+                type: "EMPTY_WIDGET"
 
             })
         },

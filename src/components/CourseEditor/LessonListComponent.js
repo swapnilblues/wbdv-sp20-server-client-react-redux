@@ -35,6 +35,7 @@ class LessonListComponent extends React.Component {
                                                 // await
                                                 await this.props.selectLesson(lesson._id)
                                                 await this.props.findTopicsForLesson(lesson._id)
+                                                await this.props.emptyWidget()
                                             }}>
                                             <a className="nav-link text-white" href="#">{lesson.title}</a>
 
@@ -56,6 +57,7 @@ class LessonListComponent extends React.Component {
                                                 // await
                                                 await this.props.selectLesson(lesson._id)
                                                 await this.props.findTopicsForLesson(lesson._id)
+                                                await this.props.emptyWidget()
                                             }}>
 
                                             <input onChange={(e) =>
@@ -90,7 +92,7 @@ class LessonListComponent extends React.Component {
                                             <span onClick={async () => {
                                                 await this.props.deleteLesson(lesson._id)
                                                 // await this.props.setLessonToDefault()
-                                                await this.props.emptyTopic()
+                                                await this.props.emptyWidget()
                                                 await this.props.editStateTrue1()
                                                 await this.props.emptyTopic()
                                             }}>
@@ -110,6 +112,8 @@ class LessonListComponent extends React.Component {
                                                 await this.props.selectLesson(lesson._id)
                                                 await this.props.deSelectTopic()
                                                 await this.props.findTopicsForLesson(lesson._id)
+                                                await this.props.emptyWidget()
+
                                             }}>
                                             <a className="nav-link text-white" href="#">{lesson.title}</a>
 
@@ -285,6 +289,14 @@ const
             emptyTopic: () => {
                 dispatch({
                     type: EMPTY_TOPIC
+
+                })
+            },
+
+            emptyWidget: () => {
+                // alert("ABC")
+                dispatch({
+                    type: "EMPTY_WIDGET"
 
                 })
             },

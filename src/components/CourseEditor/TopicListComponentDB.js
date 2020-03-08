@@ -15,10 +15,10 @@ class TopicListComponentDB extends React.Component {
     // componentDidMount() {
     //     this.props.findTopicsForLesson("EP1jlFgib7QNyEjw")
     // }
-    componentDidUpdate(prevProps, prevState, snapshot ) {
-        if(prevProps.lessonId !== this.props.lessonId)
-            this.props.findTopicsForLesson(this.props.lessonId)
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot ) {
+    //     if(prevProps.lessonId !== this.props.lessonId)
+    //         this.props.findTopicsForLesson(this.props.lessonId)
+    // }
 
     state = {
         course: ""
@@ -55,7 +55,7 @@ class TopicListComponentDB extends React.Component {
 
 const stateToPropertyMapper = (state) => {
     return {
-        topics: state.topicDB1.topics,
+        topics: state.topic1.topics,
         // modules: state.module1.modules,
         selected: state.module1.selected,
         selectedLesson: state.lesson1.selectedLesson,

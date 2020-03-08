@@ -192,12 +192,12 @@ const CourseEditorComponent = ({hideCourseEditor, match, history, courseId, topi
 
 
                         <div>
-                        {/*<TopicListComponent*/}
-                        {/*    courseId = {courseId}*/}
-                        {/*    moduleId = {moduleId}*/}
-                        {/*    lessonId = {lessonId}*/}
-                        {/*    topicId = {topicId}*/}
-                        {/*/>*/}
+                        <TopicListComponent
+                            courseId = {courseId}
+                            moduleId = {moduleId}
+                            lessonId = {lessonId}
+                            topicId = {topicId}
+                        />
 
                         <TopicListComponent1
                                 courseId = {courseId}

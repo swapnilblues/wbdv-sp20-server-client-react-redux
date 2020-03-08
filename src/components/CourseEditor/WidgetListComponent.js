@@ -9,7 +9,7 @@ class WidgetListComponent extends React.Component {
 
     // componentDidMount() {
     //     // this.props.findAllWidgets();
-    //     this.props.findWidgetsForTopic(1);
+    //     this.props.findWidgetsForTopic(this.props.topicId);
     // }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
