@@ -126,14 +126,15 @@ export default class Widget extends React.Component {
                                     >
                                         <option value="HEADING">Heading</option>
                                         <option value="PARAGRAPH">Paragraph</option>
+                                        <option value="LIST">List</option>
+                                        <option value="IMAGE">Image</option>
                                     </select>
                                 </label>
 
                             </li>
                             {this.props.editing &&
                             <li className="wbdv-topic-edit"
-                                onClick={() => {
-                                    // alert(this.props.widget.id)
+                                onClick={ () => {
                                     this.props.deleteWidget(this.props.widget.id)
                                 }}
                             >
@@ -317,13 +318,17 @@ export default class Widget extends React.Component {
                                     >
                                         <option value="HEADING">Heading</option>
                                         <option value="PARAGRAPH">Paragraph</option>
+                                        <option value="LIST">List</option>
+                                        <option value="IMAGE">Image</option>
                                     </select>
                                 </label>
 
                             </li>
                             {this.props.editing &&
                             <li className="wbdv-topic-edit"
-                                onClick={() => this.props.deleteWidget(this.props.widget.id)}>
+                                onClick={() =>
+                                    this.props.deleteWidget(this.props.widget.id)
+                                }>
                                 <a href="#" className="wbdv-arrow-link nav-link text-dark">
                                     <i className="wbdv-topic-edit-cancel-btn fas fa-times-circle fa-lg"/>
 
@@ -401,6 +406,193 @@ export default class Widget extends React.Component {
                 </div>
 
                 }
+
+                {this.state.widget.type === "LIST" &&
+
+
+                //TODO Refactor to List Widget Class
+
+
+                <div>
+                    <br/>
+                    {!this.state.preview && this.props.editing &&
+                    <div className="wbdv-topic-widget-div row-4 border border-secondary">
+                        <ul className="nav nav-pills">
+                            <li className="wbdv-topic-edit">
+                                <h4 className="wbdv-topic-heading">List Widget</h4>
+                            </li>
+                            <li className="wbdv-topic-edit ml-auto"
+                                onClick={() => this.props.upWidget(this.state.widget.id)}>
+                                <a href="#" className="wbdv-arrow-link nav-link text-dark">
+                                    <i className="wbdv-topic-arrow-up ml-auto far fa-arrow-alt-circle-up fa-lg"/>
+                                </a>
+                            </li>
+
+                            <li className="wbdv-topic-edit"
+                                onClick={() => this.props.downWidget(this.state.widget.id)}
+                            >
+                                <a href="#" className="wbdv-arrow-link nav-link text-dark">
+                                    <i className="wbdv-topic-arrow-down far fa-arrow-alt-circle-down fa-lg"/>
+                                </a>
+                            </li>
+                            <li className="wbdv-topic-edit">
+
+
+                                <label>
+                                    <select className="form-control wbdv-topic-edit-heading"
+                                            onChange={(e) => {
+                                                let newType = e.target.value
+                                                this.setState(prevState => ({
+                                                    widget: {
+                                                        ...prevState.widget,
+                                                        type: newType
+                                                    },
+                                                    newWidget: {
+                                                        ...prevState.newWidget,
+                                                        type: newType
+                                                    }
+                                                }))
+                                            }}
+                                            value={this.state.widget.type}
+                                    >
+                                        <option value="HEADING">Heading</option>
+                                        <option value="PARAGRAPH">Paragraph</option>
+                                        <option value="LIST">List</option>
+                                        <option value="IMAGE">Image</option>
+                                    </select>
+                                </label>
+
+                            </li>
+                            {this.props.editing &&
+                            <li className="wbdv-topic-edit"
+                                onClick={() =>
+                                    this.props.deleteWidget(this.props.widget.id)
+                                }>
+                                <a href="#" className="wbdv-arrow-link nav-link text-dark">
+                                    <i className="wbdv-topic-edit-cancel-btn fas fa-times-circle fa-lg"/>
+
+                                </a>
+                            </li>
+                            }
+                        </ul>
+
+                        <br/>
+                        <form>
+                            <div className="outer-form">
+                                <div className="wdbv-widget-form form-group row">
+
+                                    <textarea className="form-control wbdv-field wbdv-heading-text"
+                                              id="heading"
+                                              onChange={(e) => {
+                                                  const newText = e.target.value;
+                                                  this.setState(prevState => ({
+                                                      widget: {
+                                                          ...prevState.widget,
+                                                          text: newText
+                                                      },
+                                                      newWidget: {
+                                                          ...prevState.newWidget,
+                                                          text: newText
+                                                      }
+
+                                                  }))
+                                              }
+                                              }
+                                              placeholder="Heading Text"
+                                              value={this.state.widget.text}
+                                    />
+
+                                </div>
+                            </div>
+
+                            <div className="outer-form">
+                                <div className="wdbv-widget-form form-group row">
+
+                                    <select className="form-control wbdv-field wbdv-heading1" id="heading1"
+                                            onChange={(e) => {
+                                                let newStyle = e.target.value
+
+                                                this.setState(prevState => ({
+                                                    widget: {
+                                                        ...prevState.widget,
+                                                        style: newStyle
+                                                    },
+                                                    newWidget: {
+                                                        ...prevState.newWidget,
+                                                        style: newStyle
+                                                    }
+                                                }))
+                                            }}
+                                            value={this.state.widget.style}>
+
+                                        <option value="ul">Unordered List</option>
+                                        <option value="ol">Ordered List</option>
+
+                                        {/*<option value="List Widget">List Widget</option>*/}
+                                        {/*<option value="Image Widget">Image Widget</option>*/}
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div className="outer-form">
+                                <div className="wdbv-widget-form form-group row">
+                                    <input type="text" className="form-control wbdv-field wbdv-widget-name"
+                                           id="widgetName"
+                                           onChange={(e) => {
+                                               const newName = e.target.value
+                                               this.setState(prevState => ({
+                                                   widget: {
+                                                       ...prevState.widget,
+                                                       name: newName
+                                                   },
+                                                   newWidget: {
+                                                       ...prevState.newWidget,
+                                                       name: newName
+                                                   }
+                                               }))
+                                           }}
+
+                                           value={this.state.widget.name}
+                                           placeholder="Widget name"/>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    }
+                    {/*End of preview == false*/}
+
+                    {this.state.widget.type === "LIST" &&
+                    <div className="row-4 border border-secondary">
+                        <h5>List Preview</h5>
+                        {this.state.widget.text !== null && this.state.widget.text !== '' &&
+                        <div>
+                            {this.state.widget.style === "ol" &&
+                            <ol>
+                                {this.state.widget.text.split('\n').map((line, i) => {
+                                    return <li>{line}</li>
+                                })}
+                            </ol>}
+                            {this.state.widget.style === "ul" &&
+                            <ul>
+                                {this.state.widget.text.split('\n').map((line, i) => {
+                                    return <li>{line}</li>
+                                })}
+                            </ul>}
+                        </div>
+                            }
+                    </div>
+                    }
+
+
+                </div>
+
+                }
+
+
                 </div>
 
         )

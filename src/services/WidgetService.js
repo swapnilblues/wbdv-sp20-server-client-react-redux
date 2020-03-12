@@ -14,7 +14,7 @@ export const createWidget = (topicId,widget) => {
 }
 
 export const deleteWidget = (widgetId) =>
-    fetch(`${URL_DOMAIN}/api/widgets/${widgetId}`,
+    fetch(`${URL_LOCALHOST}/api/widgets/${widgetId}`,
         { method: "DELETE"
         }).then(response => response.json())
 
@@ -24,7 +24,7 @@ export const findWidgetsForTopic = (topicId) => {
 }
 
 export const updateWidget = (widgetId,widget) => {
-    return fetch(`${URL_DOMAIN}/api/widgets/${widgetId}`,{
+    return fetch(`${URL_LOCALHOST}/api/widgets/${widgetId}`,{
         method:'PUT',
         body: JSON.stringify(widget),
         headers:{
