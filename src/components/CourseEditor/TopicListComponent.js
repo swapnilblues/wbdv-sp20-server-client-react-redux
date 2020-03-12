@@ -78,7 +78,7 @@ class TopicListComponent extends React.Component {
                                             />
                                             <span
                                                 onClick={async () => {
-                                                    await this.props.setCurrTitle2(this.state.course, this.props.selectedTopic)
+                                                    await this.props.updateTopic(this.state.course, this.props.selectedTopic)
                                                     // await this.props.editStateTrue1()
                                                     await this.props.findTopicsForLesson(this.props.selectedLesson)
                                                     // await this.props.setLessonToDefault()
@@ -229,7 +229,7 @@ const stateToPropertyMapper = (state) => {
 const dispatchToPropertyMapper = (dispatch) => {
     return {
 
-        setCurrTitle2: async (newTopic, topicId) => {
+        updateTopic: async (newTopic, topicId) => {
             await topicService.updateTopic(newTopic, topicId)
                 .then(res =>
                     dispatch({type: UPDATE_TOPIC})
@@ -276,10 +276,9 @@ const dispatchToPropertyMapper = (dispatch) => {
                 })),
 
         findTopicsForLesson: (lessonId) =>
-            fetch(`http://localhost:8080/api/lessons/${lessonId}/topics`)
-                .then(response => response.json())
+            topicService.findTopicsForLesson(lessonId)
                 .then(topics => dispatch({
-                    type:  FIND_TOPICS_FOR_LESSON,
+                    type: "SET_TOPICS",
                     topics: topics
                 })),
 

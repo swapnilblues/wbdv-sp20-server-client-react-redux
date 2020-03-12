@@ -23,13 +23,13 @@ const topicReducer = (state = initialState, action) => {
                 edit: state.edit
             }
 
-        case "EDIT_TRUE_TOPIC":
-            return {
-                edit: false,
-                selectedTopic: state.selectedTopic,
-                topics: [
-                    ...state.topics]
-            }
+        // case "EDIT_TRUE_TOPIC":
+        //     return {
+        //         edit: false,
+        //         selectedTopic: state.selectedTopic,
+        //         topics: [
+        //             ...state.topics]
+        //     }
 
         case "EDIT_TOPIC":
             // alert("EE")
