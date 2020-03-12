@@ -265,8 +265,7 @@ const
             // },
 
             findTopicsForLesson: (lessonId) =>
-                fetch(`http://localhost:8080/api/lessons/${lessonId}/topics`)
-                    .then(response => response.json())
+                topicService.findTopicsForLesson(lessonId)
                     .then(topics => dispatch({
                         type: "SET_TOPICS",
                         topics: topics

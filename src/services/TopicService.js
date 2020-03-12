@@ -1,5 +1,7 @@
+import {URL_LOCALHOST} from "../common/constants";
+
 export const createTopic  = (lessonId, topic) =>
-    fetch(`http://localhost:8080/api/lessons/${lessonId}/topics`, {
+    fetch(`${URL_LOCALHOST}/api/lessons/${lessonId}/topics`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -8,13 +10,13 @@ export const createTopic  = (lessonId, topic) =>
     }).then(response => response.json())
 
 export const findTopicsForLesson = (lessonId) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/bhaumik/lessons/${lessonId}/topics`)
+    fetch(`${URL_LOCALHOST}/api/lessons/${lessonId}/topics`)
         .then(response =>
             // console.log(response.json())
             response.json())
 
 export const deleteTopic = (topicId) =>
-    fetch(`https://wbdv-generic-server.herokuapp.com/api/bhaumik/topics/${topicId}`,
+    fetch(`${URL_LOCALHOST}/api/topics/${topicId}`,
         { method: "DELETE"
         }).then(response => response.json())
 

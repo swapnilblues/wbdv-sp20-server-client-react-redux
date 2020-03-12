@@ -96,7 +96,8 @@ class TopicListComponent extends React.Component {
                                                 onClick={async () => {
                                                 await this.props.deleteTopic(topic.id)
                                                 // await this.props.setLessonToDefault()
-                                                // await this.props.emptyTopic()
+                                                await this.props.emptyWidget()
+                                                await this.props.editStateTrue2()
                                                 // await this.props.editStateTrue1()
                                             }}
                                             >
@@ -239,6 +240,12 @@ const dispatchToPropertyMapper = (dispatch) => {
             // alert("ES")
             dispatch({
                 type: "EDIT_TOPIC"
+            })
+        },
+
+        editStateTrue2: () => {
+            dispatch({
+                type: "EDIT_TRUE_TOPIC"
             })
         },
 

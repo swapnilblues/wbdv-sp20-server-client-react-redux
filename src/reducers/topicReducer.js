@@ -23,6 +23,13 @@ const topicReducer = (state = initialState, action) => {
                 edit: state.edit
             }
 
+        case "EDIT_TRUE_TOPIC":
+            return {
+                edit: false,
+                selectedTopic: state.selectedTopic,
+                topics: [
+                    ...state.topics]
+            }
 
         case "EDIT_TOPIC":
             // alert("EE")
@@ -87,7 +94,7 @@ const topicReducer = (state = initialState, action) => {
         case DELETE_TOPIC:
             return {
                 selectedTopic: 'bcd',
-                topics: state.topics.filter(topic => topic._id !== action.topicId),
+                topics: state.topics.filter(topic => topic.id !== action.topicId),
                 edit: state.edit
             }
 
