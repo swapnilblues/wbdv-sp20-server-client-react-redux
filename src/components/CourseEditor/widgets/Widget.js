@@ -359,7 +359,7 @@ export default class Widget extends React.Component {
                                                }))
                                            }
                                            }
-                                           placeholder="Heading Text"
+                                           placeholder="Paragraph Text"
                                            value={this.state.widget.text}
                                     />
 
@@ -498,7 +498,7 @@ export default class Widget extends React.Component {
                                                   }))
                                               }
                                               }
-                                              placeholder="Heading Text"
+                                              placeholder="List Text"
                                               value={this.state.widget.text}
                                     />
 
@@ -584,6 +584,145 @@ export default class Widget extends React.Component {
                             </ul>}
                         </div>
                             }
+                    </div>
+                    }
+
+
+                </div>
+
+                }
+
+                {this.state.widget.type === "IMAGE" &&
+
+
+                //TODO Refactor to Image Widget Class
+
+
+                <div>
+                    <br/>
+                    {!this.state.preview && this.props.editing &&
+                    <div className="wbdv-topic-widget-div row-4 border border-secondary">
+                        <ul className="nav nav-pills">
+                            <li className="wbdv-topic-edit">
+                                <h4 className="wbdv-topic-heading">Paragraph Widget</h4>
+                            </li>
+                            <li className="wbdv-topic-edit ml-auto"
+                                onClick={() => this.props.upWidget(this.state.widget.id)}>
+                                <a href="#" className="wbdv-arrow-link nav-link text-dark">
+                                    <i className="wbdv-topic-arrow-up ml-auto far fa-arrow-alt-circle-up fa-lg"/>
+                                </a>
+                            </li>
+
+                            <li className="wbdv-topic-edit"
+                                onClick={() => this.props.downWidget(this.state.widget.id)}
+                            >
+                                <a href="#" className="wbdv-arrow-link nav-link text-dark">
+                                    <i className="wbdv-topic-arrow-down far fa-arrow-alt-circle-down fa-lg"/>
+                                </a>
+                            </li>
+                            <li className="wbdv-topic-edit">
+
+
+                                <label>
+                                    <select className="form-control wbdv-topic-edit-heading"
+                                            onChange={(e) => {
+                                                let newType = e.target.value
+                                                this.setState(prevState => ({
+                                                    widget: {
+                                                        ...prevState.widget,
+                                                        type: newType
+                                                    },
+                                                    newWidget: {
+                                                        ...prevState.newWidget,
+                                                        type: newType
+                                                    }
+                                                }))
+                                            }}
+                                            value={this.state.widget.type}
+                                    >
+                                        <option value="HEADING">Heading</option>
+                                        <option value="PARAGRAPH">Paragraph</option>
+                                        <option value="LIST">List</option>
+                                        <option value="IMAGE">Image</option>
+                                    </select>
+                                </label>
+
+                            </li>
+                            {this.props.editing &&
+                            <li className="wbdv-topic-edit"
+                                onClick={() =>
+                                    this.props.deleteWidget(this.props.widget.id)
+                                }>
+                                <a href="#" className="wbdv-arrow-link nav-link text-dark">
+                                    <i className="wbdv-topic-edit-cancel-btn fas fa-times-circle fa-lg"/>
+
+                                </a>
+                            </li>
+                            }
+                        </ul>
+
+                        <br/>
+                        <form>
+                            <div className="outer-form">
+                                <div className="wdbv-widget-form form-group row">
+
+                                    <textarea className="form-control wbdv-field wbdv-heading-text"
+                                              id="heading"
+                                              onChange={(e) => {
+                                                  const newUrl = e.target.value;
+                                                  this.setState(prevState => ({
+                                                      widget: {
+                                                          ...prevState.widget,
+                                                          url: newUrl
+                                                      },
+                                                      newWidget: {
+                                                          ...prevState.newWidget,
+                                                          text: newUrl
+                                                      }
+
+                                                  }))
+                                              }
+                                              }
+                                              placeholder="Image URL"
+                                              value={this.state.widget.url}
+                                    />
+
+                                </div>
+                            </div>
+                            <div className="outer-form">
+                                <div className="wdbv-widget-form form-group row">
+                                    <input type="text" className="form-control wbdv-field wbdv-widget-name"
+                                           id="widgetName"
+                                           onChange={(e) => {
+                                               const newName = e.target.value
+                                               this.setState(prevState => ({
+                                                   widget: {
+                                                       ...prevState.widget,
+                                                       name: newName
+                                                   },
+                                                   newWidget: {
+                                                       ...prevState.newWidget,
+                                                       name: newName
+                                                   }
+                                               }))
+                                           }}
+
+                                           value={this.state.widget.name}
+                                           placeholder="Widget name"/>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    }
+                    {/*End of preview == false*/}
+
+                    {this.state.widget.type === "IMAGE" &&
+                    <div className="row-4 border border-secondary">
+                        <h5>Image Preview</h5>
+                        <img src={this.state.widget.url}/>
                     </div>
                     }
 
