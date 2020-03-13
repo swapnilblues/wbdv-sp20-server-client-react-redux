@@ -34,12 +34,12 @@ export const updateWidget = (widgetId,widget) => {
 }
 
 export const upWidget = (widgetId) => {
-    return fetch(`${URL_DOMAIN}/api/widgets/up-widget/${widgetId}`)
+    return fetch(`${URL_LOCALHOST}/api/widgets/up-widget/${widgetId}`)
         .then(response => response.json())
 }
 
 export const downWidget = (widgetId) => {
-    return fetch(`${URL_DOMAIN}/api/widgets/down-widget/${widgetId}`)
+    return fetch(`${URL_LOCALHOST}/api/widgets/down-widget/${widgetId}`)
         .then(response => response.json())
 }
 

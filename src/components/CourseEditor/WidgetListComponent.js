@@ -148,7 +148,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
     },
 
     deleteWidget: (wid) => {
-        alert("BB")
+        // alert("BB")
         widgetService.deleteWidget(wid)
             .then(status => dispatch({
                 type: "DELETE_WIDGET",

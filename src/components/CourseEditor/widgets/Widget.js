@@ -604,7 +604,7 @@ export default class Widget extends React.Component {
                     <div className="wbdv-topic-widget-div row-4 border border-secondary">
                         <ul className="nav nav-pills">
                             <li className="wbdv-topic-edit">
-                                <h4 className="wbdv-topic-heading">Paragraph Widget</h4>
+                                <h4 className="wbdv-topic-heading">Image Widget</h4>
                             </li>
                             <li className="wbdv-topic-edit ml-auto"
                                 onClick={() => this.props.upWidget(this.state.widget.id)}>
@@ -722,7 +722,7 @@ export default class Widget extends React.Component {
                     {this.state.widget.type === "IMAGE" &&
                     <div className="row-4 border border-secondary">
                         <h5>Image Preview</h5>
-                        <img src={this.state.widget.url}/>
+                        <img src={this.state.widget.url} alt={"Image not found"}/>
                     </div>
                     }
 
