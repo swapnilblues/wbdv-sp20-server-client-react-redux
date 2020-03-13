@@ -35,6 +35,7 @@ class TopicListComponent extends React.Component {
                                                 // await
                                                 // await this.props.selectLesson(topic.id)
                                                 // await this.props.findTopicsForLesson(topic.id)
+                                                await this.props.findWidgetsForTopic(topic.id)
                                             }}>
                                             <a className="nav-link text-white" href="#">{topic.title}</a>
 
@@ -114,6 +115,7 @@ class TopicListComponent extends React.Component {
                                             onClick={async () => {
                                                 // this.props.findTopicsForLesson(lesson.id)
                                                 // await
+                                                // await alert("BB")
                                                 await this.props.selectTopic(topic.id)
                                                 await this.props.findWidgetsForTopic(topic.id)
 
