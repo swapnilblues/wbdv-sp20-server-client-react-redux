@@ -1,7 +1,7 @@
-import {URL_LOCALHOST} from "../common/constants";
+import {URL_DOMAIN, URL_LOCALHOST} from "../common/constants";
 
 export const createTopic  = (lessonId, topic) =>
-    fetch(`${URL_LOCALHOST}/api/lessons/${lessonId}/topics`, {
+    fetch(`${URL_DOMAIN}/api/lessons/${lessonId}/topics`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -10,18 +10,18 @@ export const createTopic  = (lessonId, topic) =>
     }).then(response => response.json())
 
 export const findTopicsForLesson = (lessonId) =>
-    fetch(`${URL_LOCALHOST}/api/lessons/${lessonId}/topics`)
+    fetch(`${URL_DOMAIN}/api/lessons/${lessonId}/topics`)
         .then(response =>
             // console.log(response.json())
             response.json())
 
 export const deleteTopic = (topicId) =>
-    fetch(`${URL_LOCALHOST}/api/topics/${topicId}`,
+    fetch(`${URL_DOMAIN}/api/topics/${topicId}`,
         { method: "DELETE"
         }).then(response => response.json())
 
 export const updateTopic  = async (newTopic, topicId) => {
-    const response = await fetch(`${URL_LOCALHOST}/api/topics/${topicId}`, {
+    const response = await fetch(`${URL_DOMAIN}/api/topics/${topicId}`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'

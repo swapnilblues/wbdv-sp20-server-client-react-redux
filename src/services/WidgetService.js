@@ -1,7 +1,7 @@
 import {URL_DOMAIN, URL_LOCALHOST} from "../common/constants";
 
 export const createWidget = (topicId,widget) => {
-    return fetch(`${URL_LOCALHOST}/api/topics/${topicId}/widgets`,{
+    return fetch(`${URL_DOMAIN}/api/topics/${topicId}/widgets`,{
         method:'POST',
         body: JSON.stringify(
             {
@@ -14,17 +14,17 @@ export const createWidget = (topicId,widget) => {
 }
 
 export const deleteWidget = (widgetId) =>
-    fetch(`${URL_LOCALHOST}/api/widgets/${widgetId}`,
+    fetch(`${URL_DOMAIN}/api/widgets/${widgetId}`,
         { method: "DELETE"
         }).then(response => response.json())
 
 export const findWidgetsForTopic = (topicId) => {
-    return fetch(`${URL_LOCALHOST}/api/topics/${topicId}/widgets`)
+    return fetch(`${URL_DOMAIN}/api/topics/${topicId}/widgets`)
         .then(response => response.json())
 }
 
 export const updateWidget = (widgetId,widget) => {
-    return fetch(`${URL_LOCALHOST}/api/widgets/${widgetId}`,{
+    return fetch(`${URL_DOMAIN}/api/widgets/${widgetId}`,{
         method:'PUT',
         body: JSON.stringify(widget),
         headers:{
@@ -34,12 +34,12 @@ export const updateWidget = (widgetId,widget) => {
 }
 
 export const upWidget = (widgetId) => {
-    return fetch(`${URL_LOCALHOST}/api/widgets/up-widget/${widgetId}`)
+    return fetch(`${URL_DOMAIN}/api/widgets/up-widget/${widgetId}`)
         .then(response => response.json())
 }
 
 export const downWidget = (widgetId) => {
-    return fetch(`${URL_LOCALHOST}/api/widgets/down-widget/${widgetId}`)
+    return fetch(`${URL_DOMAIN}/api/widgets/down-widget/${widgetId}`)
         .then(response => response.json())
 }
 

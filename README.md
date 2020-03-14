@@ -1,13 +1,13 @@
-## Assignment 5 - Web Services and Server State
+## Assignment 6 - Persisting Data in Relational Database
 ### Student : Swapnil Bhaumik
 
-#### [Assignment Doc](https://docs.google.com/document/d/1_RDMRAsIR-6MY_xzbZ6HACRW98vat6j2sZmgym3MinU/edit#heading=h.ugtt3gkfyhec)
+#### [Assignment Doc](https://docs.google.com/document/d/1aAmLYNEpmG9cGPqge6CzRani3TJY9pel52Ds1NKqM0Y/edit#)
 
 ### TODO
-- [x] Create Java Server
-- [x] Create preview for Heading Widget
-- [x] Update Widget type 'HEADING' & 'PARAGRAPH'
-- [x] Create Paragraph Widget
-- [x] Create preview for Paragraph Widget
-- [x] Reorder widget from up and down button
-- [x] Merge development and master branch
+- [x] Create MySQL database
+- [x] Connect to RDS using JPA
+- [x] CRUD Topics in JPA
+- [x] CRUD Widgets in JPA
+- [x] Widget up and down
+- [x] Move RDS in AWS
+- [x] Move Java server to Heroku
