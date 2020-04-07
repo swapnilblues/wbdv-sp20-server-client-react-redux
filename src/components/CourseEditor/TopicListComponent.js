@@ -8,6 +8,7 @@ import {CREATE_TOPIC, DELETE_TOPIC, EMPTY_TOPIC, FIND_TOPICS_FOR_LESSON, UPDATE_
 import lessonService from "../../services/LessonService";
 import {CREATE_LESSON, UPDATE_LESSON} from "../../actions/lessonAction";
 import {Link} from "react-router-dom";
+import widgetService from "../../services/WidgetService";
 
 
 class TopicListComponent extends React.Component {
@@ -252,8 +253,7 @@ const dispatchToPropertyMapper = (dispatch) => {
         },
 
         findWidgetsForTopic: (tid) =>
-            fetch(`http://localhost:8080/api/topics/${tid}/widgets`)
-                .then(response => response.json())
+            widgetService.findWidgetsForTopic(tid)
                 .then(widgets => dispatch({
                     type: "FIND_WIDGETS_FOR_TOPIC",
                     widgets: widgets
